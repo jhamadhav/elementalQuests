@@ -1,4 +1,4 @@
- @import url("./_fonts.scss");
+ @import "./fonts";
 
  * {
      margin: 0;
@@ -25,6 +25,8 @@
  $bg-height: 50px;
  $brown-dark:#523c28;
  $brown-light:#f9f3ee;
+ $tab: 1040px;
+ $mobile: 800px;
 
  #bg {
      width: 100vw;
@@ -65,6 +67,10 @@
      margin: auto;
      border-radius: 6px;
 
+     @media screen and (max-width: $mobile) {
+         justify-content: center;
+
+     }
 
      .form-holder {
          width: 50%;
@@ -75,10 +81,14 @@
          align-items: center;
          padding: 30px;
 
+         @media screen and (max-width: $mobile) {
+             width: 90%;
+         }
+
          #app-name {
              font-family: 'Cormorant Garamond', serif;
              color: $brown-dark;
-             font-size: large;
+             font-size: x-large;
              margin-top: -10px;
          }
 
@@ -96,6 +106,10 @@
          color: $brown-dark;
          width: 55%;
          height: 80%;
+
+         @media screen and (max-width: $tab) {
+             width: 80%;
+         }
 
          //  background: cyan;
          a {
@@ -145,7 +159,7 @@
              border-radius: 8px;
              width: 100%;
              padding: 16px 0;
-             margin: 20px 0;
+             margin: 10px 0;
              font-size: large;
              cursor: pointer;
 
@@ -164,17 +178,28 @@
      .image-holder {
          height: 100%;
          width: 50%;
-         background: #000;
+         background: #fff;
          overflow: hidden;
 
          display: flex;
          flex-direction: row;
-         justify-content: center;
+         justify-content: flex-end;
          align-items: center;
+
+         @media screen and (max-width: $mobile) {
+             display: none;
+             width: 0%;
+         }
 
          img {
              display: inline-block;
              width: 100%;
+
+             @media screen and (max-width: $tab) {
+                 height: 100%;
+                 width: auto;
+             }
+
          }
      }
  }
