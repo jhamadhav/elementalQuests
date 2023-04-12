@@ -4,12 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elemental quest</title>
+    <title>Elemental quest | login </title>
+
+    <script src="./scripts/firebase-login.js" type="module"></script>
 </head>
 
 <body>
-    <h1>An innovative experience that blends the thrill of a treasure hunt with the power of storytelling and puzzles to
-        provide a one-of-a-kind soft skills assessment experience. </h1>
+    <h4>An innovative experience that blends the thrill of a treasure hunt with the power of storytelling and puzzles to
+        provide a one-of-a-kind soft skills assessment experience. </h4>
+
+    <form action="javascript:void(0)">
+        <label for="email">Email</label>
+        <input type="email" required id="email" name="email">
+        <br>
+        <label for="password">Password</label>
+        <input type="text" required id="password" name="password">
+        <br>
+        <label for="confirm-password">Confirm Password</label>
+        <input type="text" required id="confirm-password" name="confirm-password">
+        <br>
+        <button type="submit" id="submit-sign-up">signup</button>
+    </form>
+
 </body>
 
 </html>
