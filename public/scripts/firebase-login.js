@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js'
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js'
 import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js'
 
 
@@ -22,6 +22,16 @@ window.onload = () => {
     document.getElementById("submit-sign-up").onclick = async () => {
         await signUpUser()
     }
+    document.getElementById("submit-login").onclick = async () => {
+        await loginUser()
+    }
+    document.getElementById("submit-logout").onclick = async () => {
+        logoutUser()
+    }
+    document.getElementById("submit-reset-password").onclick = async () => {
+        resetPassword()
+    }
+
     onAuthStateChanged(auth, (user) => {
         if (user) {
             // console.log(user);
@@ -29,10 +39,11 @@ window.onload = () => {
             appUser.email = user.email
 
             user.getIdToken(true).then((idToken) => {
-                console.log("id token retrieved")
+                // console.log("id token retrieved")
                 appUser.idToken = idToken
             }).catch((error) => {
-                console.log("Error while getting login info");
+                console.log("Error while getting login info")
+                console.log(error);
             })
 
             console.log(appUser)
@@ -65,12 +76,42 @@ const signUpUser = async () => {
     }
 }
 
-export const getUser = () => {
-    let user = auth.currentUser;
-    console.log(user);
-    console.log(user.id_token);
+const loginUser = async () => {
+
+    let email = document.getElementById("email").value
+    let pass = document.getElementById("password").value
+
+    let userCredential = await signInWithEmailAndPassword(auth, email, pass)
+    try {
+        let user = userCredential.user
+        console.log("user logged in");
+    } catch (e) {
+        console.log("login failed");
+        console.log(e);
+    }
 }
 
+const logoutUser = () => {
+    signOut(auth).then(() => {
+        appUser = {}
+        console.log("logged out");
+    }).catch((error) => {
+        console.log("error in log out");
+        console.log(error);
+    });
+}
+
+const resetPassword = () => {
+    let email = document.getElementById("email").value
+    sendPasswordResetEmail(auth, email)
+        .then(() => {
+            console.log("password reset mail sent")
+        })
+        .catch((error) => {
+            console.log("error while sending password reset mail")
+            console.log(error);
+        });
+}
 
 
 
