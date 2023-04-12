@@ -149,7 +149,16 @@ const loginUser = async () => {
     try {
         // let user = userCredential.user
         console.log("user logged in");
+
+        // if already logged in move to game
+        window.location = "/hello"
     } catch (e) {
+
+        // if already logged in move to game 
+        if (appUser != {}) {
+            window.location = "/hello"
+        }
+
         console.log("login failed");
         errorMsg("login failed");
         console.log(e);
