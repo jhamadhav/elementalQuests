@@ -47,7 +47,8 @@ window.onload = () => {
                 console.log(error);
             })
 
-            console.log(appUser)
+            // console.log(appUser)
+            iziToast.success({ title: "Success", message: "logged in" })
         } else {
             console.log("user not available");
         }
@@ -61,8 +62,19 @@ const signUpUser = async () => {
     userData.confPass = document.getElementById("confirm-password").value
     console.log(userData);
 
+    if (userData.email == "") {
+        errorMsg("Type in your email !")
+        return
+    }
+
+    if (userData.pass == "" || userData.confPass == "") {
+        errorMsg("Type in your password !")
+        return
+    }
+
     if (userData.pass != userData.confPass) {
         console.log("enter same password in both fields");
+        errorMsg("Passwords do not match");
         return
     }
 
@@ -71,9 +83,13 @@ const signUpUser = async () => {
         let user = userCredential.user
         console.log("user signed up");
         console.log(user);
+
+        successMsg("signed up")
     } catch (e) {
         console.log("signup failed");
         console.log(e);
+
+        errorMsg("signup failed");
     }
 }
 
@@ -81,13 +97,21 @@ const loginUser = async () => {
 
     let email = document.getElementById("email").value
     let pass = document.getElementById("password").value
-
+    if (email == "") {
+        errorMsg("Type in your email !")
+        return
+    }
+    if (pass == "") {
+        errorMsg("Type in your password !")
+        return
+    }
     let userCredential = await signInWithEmailAndPassword(auth, email, pass)
     try {
-        let user = userCredential.user
+        // let user = userCredential.user
         console.log("user logged in");
     } catch (e) {
         console.log("login failed");
+        errorMsg("login failed");
         console.log(e);
     }
 }
@@ -97,23 +121,41 @@ const logoutUser = () => {
         document.cookie = "idToken=";
         appUser = {}
         console.log("logged out");
+
+        successMsg("logged out");
     }).catch((error) => {
         console.log("error in log out");
         console.log(error);
+
+        errorMsg("error in log out");
     });
 }
 
 const resetPassword = () => {
     let email = document.getElementById("email").value
+    if (email == "") {
+        errorMsg("Type in your email !")
+        return
+    }
     sendPasswordResetEmail(auth, email)
         .then(() => {
             console.log("password reset mail sent")
+
+            successMsg.log("password reset mail sent")
         })
         .catch((error) => {
             console.log("error while sending password reset mail")
             console.log(error);
+
+            errorMsg("error while sending password reset mail")
         });
 }
 
+const successMsg = (txt) => {
+    iziToast.success({ title: "Success", message: txt })
+}
+const errorMsg = (txt) => {
+    iziToast.error({ title: "Error", message: txt })
+}
 
 

@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elemental quest | login </title>
 
+    <!-- izitoast -->
+    <link rel="stylesheet" href="./styles/iziToast.min.css">
+    <script src="./scripts/iziToast.min.js"></script>
+
     <script src="./scripts/firebase-login.js" type="module"></script>
 </head>
 
@@ -18,10 +22,10 @@
         <input type="email" required id="email" name="email">
         <br>
         <label for="password">Password</label>
-        <input type="text" required id="password" name="password">
+        <input type="password" required id="password" name="password">
         <br>
         <label for="confirm-password">Confirm Password</label>
-        <input type="text" required id="confirm-password" name="confirm-password">
+        <input type="password" required id="confirm-password" name="confirm-password">
         <br>
         <button type="submit" id="submit-sign-up">signup</button>
         <button type="submit" id="submit-login">login</button>
