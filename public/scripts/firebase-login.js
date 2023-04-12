@@ -16,7 +16,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth()
-let appUser = {}
+let appUser = null
 
 window.onload = () => {
 
@@ -35,17 +35,12 @@ window.onload = () => {
     makeDisplayNone(adminInp)
 
     let temp = loginInp
-    if (val == "signup" && appUser == {}) {
+    if (val == "signup") {
         temp = signInp
-    } else if (val == "reset" && appUser == {}) {
+    } else if (val == "reset") {
         temp = resetInp
-    }
-    if (val == "admin") {
-        if (appUser == {}) {
-            temp = adminInp
-        } else {
-            window.location = "/admin"
-        }
+    } else if (val == "admin") {
+        temp = adminInp
     }
 
     for (let i = 0; i < temp.length; ++i) {
@@ -56,8 +51,7 @@ window.onload = () => {
         await signUpUser()
     }
     document.getElementById("submit-admin-inp").onclick = async () => {
-        await signUpUser()
-        window.location = "/admin"
+        await loginUser()
     }
     document.getElementById("submit-sign-up").onclick = async () => {
         await signUpUser()
@@ -75,6 +69,7 @@ window.onload = () => {
     onAuthStateChanged(auth, (user) => {
         if (user) {
             // console.log(user);
+            appUser = {}
             appUser.uid = user.uid
             appUser.email = user.email
 
@@ -82,6 +77,18 @@ window.onload = () => {
                 // console.log("id token retrieved")
                 appUser.idToken = idToken
                 document.cookie = `idToken=${idToken}`;
+
+                let url = new URL(window.location);
+                let val = url.searchParams.get("type")
+                if (val == "signup" || val == "reset") {
+                    iziToast.success({ title: "Redirect", message: "to login" })
+                    window.location = "/hello"
+                }
+                if (val == "admin") {
+                    iziToast.success({ title: "Redirect", message: "to dashboard" })
+                    window.location = "/admin"
+                }
+
             }).catch((error) => {
                 console.log("Error while getting login info")
                 console.log(error);
@@ -90,6 +97,7 @@ window.onload = () => {
             // console.log(appUser)
             iziToast.success({ title: "Success", message: "logged in" })
         } else {
+            appUser = null
             console.log("user not available");
         }
     });
@@ -149,13 +157,10 @@ const loginUser = async () => {
     try {
         // let user = userCredential.user
         console.log("user logged in");
-
-        // if already logged in move to game
-        window.location = "/hello"
     } catch (e) {
 
         // if already logged in move to game 
-        if (appUser != {}) {
+        if (appUser != null) {
             window.location = "/hello"
         }
 
@@ -168,7 +173,7 @@ const loginUser = async () => {
 const logoutUser = () => {
     signOut(auth).then(() => {
         document.cookie = "idToken=";
-        appUser = {}
+        appUser = null
         console.log("logged out");
 
         successMsg("logged out");
