@@ -12,7 +12,7 @@ app.use(cors())
 
 
 // custom modules
-const { checkAuth } = require("./middleware/auth")
+const { checkAuth, hasRole } = require("./middleware/auth")
 
 app.get("/", checkAuth, (request, response) => {
     response.sendFile(__dirname + "../public/index.html");
@@ -20,6 +20,11 @@ app.get("/", checkAuth, (request, response) => {
 
 app.get("/hello", checkAuth, (req, res) => {
     res.send(JSON.stringify({ data: "hello world !" }))
+})
+
+app.get("/admin", checkAuth, (req, res, next) => {
+    hasRole(req, res, next, "admin")
+    res.send(JSON.stringify({ data: "hello admin !" }))
 })
 
 // listen for requests :)
