@@ -41,6 +41,7 @@ window.onload = () => {
             user.getIdToken(true).then((idToken) => {
                 // console.log("id token retrieved")
                 appUser.idToken = idToken
+                document.cookie = `idToken=${idToken}`;
             }).catch((error) => {
                 console.log("Error while getting login info")
                 console.log(error);
@@ -93,6 +94,7 @@ const loginUser = async () => {
 
 const logoutUser = () => {
     signOut(auth).then(() => {
+        document.cookie = "idToken=";
         appUser = {}
         console.log("logged out");
     }).catch((error) => {

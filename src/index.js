@@ -10,11 +10,15 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(cors())
 
-app.get("/", (request, response) => {
+
+// custom modules
+const { checkAuth } = require("./middleware/auth")
+
+app.get("/", checkAuth, (request, response) => {
     response.sendFile(__dirname + "../public/index.html");
 });
 
-app.get("/hello", (req, res) => {
+app.get("/hello", checkAuth, (req, res) => {
     res.send(JSON.stringify({ data: "hello world !" }))
 })
 
