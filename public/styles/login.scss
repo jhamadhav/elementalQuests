@@ -1,0 +1,196 @@
+ @import url("./_fonts.scss");
+
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+
+ body {
+     width: 100vw;
+     height: 100vh;
+     background: #e1e1e1;
+     margin: 0;
+     padding: 0;
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     align-items: center;
+     font-family: 'Poppins', sans-serif;
+     transition-duration: 300ms;
+ }
+
+ $bg-url: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC";
+ $bg-width: 50px;
+ $bg-height: 50px;
+ $brown-dark:#523c28;
+ $brown-light:#f9f3ee;
+
+ #bg {
+     width: 100vw;
+     height: 100vh;
+     position: fixed;
+     top: 0;
+     left: 0;
+
+     color: #999;
+     font: 400 16px/1.5 exo, ubuntu, "segoe ui", helvetica, arial, sans-serif;
+     text-align: center;
+     background: url($bg-url) repeat 0 0;
+     animation: bg-scrolling-reverse 1.92s infinite;
+     animation-timing-function: linear;
+
+     z-index: -1;
+ }
+
+ @keyframes bg-scrolling-reverse {
+     100% {
+         background-position: $bg-width $bg-height;
+     }
+ }
+
+ form {
+     background: transparent;
+ }
+
+ .holder {
+     background: #fff;
+     width: 90%;
+     height: 86%;
+     display: flex;
+
+     flex-direction: row;
+     justify-content: space-between;
+     align-items: center;
+     margin: auto;
+     border-radius: 6px;
+
+
+     .form-holder {
+         width: 50%;
+         height: 100%;
+         display: flex;
+         flex-direction: column;
+         justify-content: space-between;
+         align-items: center;
+         padding: 30px;
+
+         #app-name {
+             font-family: 'Cormorant Garamond', serif;
+             color: $brown-dark;
+             font-size: large;
+             margin-top: -10px;
+         }
+
+         span {
+             padding: 2px 8px;
+             margin: 6px;
+         }
+     }
+
+     form {
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: flex-start;
+         color: $brown-dark;
+         width: 55%;
+         height: 80%;
+
+         //  background: cyan;
+         a {
+             color: #262626;
+         }
+
+         label {
+             color: #000;
+             font: large;
+             width: 100%;
+
+             &::after {
+                 content: ' *';
+                 color: $brown-dark;
+             }
+         }
+
+         .header {
+             width: 100%;
+             text-align: center;
+             margin-bottom: 20px;
+             font-size: x-large;
+         }
+
+
+         input {
+             margin-bottom: 4px;
+             outline: none;
+             background-color: $brown-light;
+             border: none;
+             width: 100%;
+             font-size: medium;
+             padding: 10px;
+             background: none;
+             border: 1px solid #ddd;
+             border-radius: 4px;
+             margin-top: 8px;
+             margin-bottom: 20px;
+             background-color: $brown-light;
+         }
+
+         button {
+             border: none;
+             outline: none;
+             background: $brown-dark;
+             color: #fff;
+             border-radius: 8px;
+             width: 100%;
+             padding: 16px 0;
+             margin: 20px 0;
+             font-size: large;
+             cursor: pointer;
+
+             text-transform: capitalize;
+
+             &:hover {
+                 transform: scale(.95);
+             }
+
+             &:active {
+                 transform: scale(.9);
+             }
+         }
+     }
+
+     .image-holder {
+         height: 100%;
+         width: 50%;
+         background: #000;
+         overflow: hidden;
+
+         display: flex;
+         flex-direction: row;
+         justify-content: center;
+         align-items: center;
+
+         img {
+             display: inline-block;
+             width: 100%;
+         }
+     }
+ }
+
+ .signup-inp,
+ #submit-logout,
+ .reset-inp {
+     display: none;
+ }
+
+ .login-inp {
+     display: block;
+ }
+
+ #pass-span {
+     margin-top: -6px;
+     margin-bottom: 10px;
+     margin-left: -1px;
+ }

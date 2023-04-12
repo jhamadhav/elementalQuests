@@ -10,29 +10,62 @@
     <link rel="stylesheet" href="./styles/iziToast.min.css">
     <script src="./scripts/iziToast.min.js"></script>
 
+    <!-- css -->
+    <link rel="stylesheet" href="./styles/login.min.css">
+
+    <!-- scripts -->
     <script src="./scripts/firebase-login.js" type="module"></script>
 </head>
 
 <body>
-    <h4>An innovative experience that blends the thrill of a treasure hunt with the power of storytelling and puzzles to
-        provide a one-of-a-kind soft skills assessment experience. </h4>
 
-    <form action="javascript:void(0)">
-        <label for="email">Email</label>
-        <input type="email" required id="email" name="email">
-        <br>
-        <label for="password">Password</label>
-        <input type="password" required id="password" name="password">
-        <br>
-        <label for="confirm-password">Confirm Password</label>
-        <input type="password" required id="confirm-password" name="confirm-password">
-        <br>
-        <button type="submit" id="submit-sign-up">signup</button>
-        <button type="submit" id="submit-login">login</button>
-        <button type="submit" id="submit-logout">logout</button>
-        <button type="submit" id="submit-reset-password">reset password</button>
-    </form>
+    <!-- <div id="bg"></div> -->
 
+    <div class="holder">
+        <div class="form-holder">
+            <div id="app-name">elemental<b>Quests</b></div>
+            <form action="javascript:void(0)">
+
+                <div class="header login-inp">Sign in</div>
+                <div class="header signup-inp">Create Account</div>
+                <div class="header reset-inp">Reset Password</div>
+
+                <label for="email" class="login-inp reset-inp signup-inp">Email Address</label>
+                <input type="email" required id="email" name="email" class="login-inp reset-inp signup-inp">
+
+                <br>
+
+                <label for="password" class="login-inp signup-inp">Password</label>
+                <input type="password" required id="password" name="password" class="login-inp signup-inp">
+                <span class="login-inp" id="pass-span">Forgot password ? <a href="/?type=reset">reset password</a>
+                </span>
+                <br>
+
+                <label for="confirm-password" class="signup-inp">Confirm Password</label>
+                <input type="password" required id="confirm-password" name="confirm-password" class="signup-inp">
+
+                <br>
+
+                <button type="submit" id="submit-sign-up" class="signup-inp">signup</button>
+
+                <span class="signup-inp">Already have an account ? <a href="/?type=login">login</a> </span>
+
+                <button type="submit" id="submit-login" class="login-inp">login</button>
+
+                <span class="login-inp">Don't have an account ? <a href="/?type=signup">create account</a> </span>
+
+                <button type="submit" id="submit-logout">logout</button>
+
+                <span class="reset-inp">Enter your Email Address to receive password reset link</span>
+                <button type="submit" id="submit-reset-password" class="reset-inp">Get Email</button>
+            </form>
+
+            <div id="footer"></div>
+        </div>
+        <div class="image-holder">
+            <img src="./assets/images/bg.jpg" alt="" srcset="">
+        </div>
+    </div>
 </body>
 
 </html>

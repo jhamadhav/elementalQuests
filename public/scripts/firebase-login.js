@@ -19,6 +19,30 @@ const auth = getAuth()
 let appUser = {}
 
 window.onload = () => {
+
+    // according to url param show input boxes
+    let url = new URL(window.location);
+    let val = url.searchParams.get("type")
+
+    let loginInp = document.getElementsByClassName("login-inp")
+    let signInp = document.getElementsByClassName("signup-inp")
+    let resetInp = document.getElementsByClassName("reset-inp")
+
+    makeDisplayNone(loginInp)
+    makeDisplayNone(signInp)
+    makeDisplayNone(resetInp)
+
+    let temp = loginInp
+    if (val == "signup") {
+        temp = signInp
+    } else if (val == "reset") {
+        temp = resetInp
+    }
+
+    for (let i = 0; i < temp.length; ++i) {
+        temp[i].style.display = "block"
+    }
+
     document.getElementById("submit-sign-up").onclick = async () => {
         await signUpUser()
     }
@@ -158,4 +182,9 @@ const errorMsg = (txt) => {
     iziToast.error({ title: "Error", message: txt })
 }
 
+const makeDisplayNone = (elem) => {
+    for (let i = 0; i < elem.length; ++i) {
+        elem[i].style.display = "none"
+    }
+}
 
