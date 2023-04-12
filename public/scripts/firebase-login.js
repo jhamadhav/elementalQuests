@@ -27,10 +27,12 @@ window.onload = () => {
     let loginInp = document.getElementsByClassName("login-inp")
     let signInp = document.getElementsByClassName("signup-inp")
     let resetInp = document.getElementsByClassName("reset-inp")
+    let adminInp = document.getElementsByClassName("admin-inp")
 
     makeDisplayNone(loginInp)
     makeDisplayNone(signInp)
     makeDisplayNone(resetInp)
+    makeDisplayNone(adminInp)
 
     let temp = loginInp
     if (val == "signup" && appUser == {}) {
@@ -38,11 +40,25 @@ window.onload = () => {
     } else if (val == "reset" && appUser == {}) {
         temp = resetInp
     }
+    if (val == "admin") {
+        if (appUser == {}) {
+            temp = adminInp
+        } else {
+            window.location = "/admin"
+        }
+    }
 
     for (let i = 0; i < temp.length; ++i) {
         temp[i].style.display = "block"
     }
 
+    document.getElementById("submit-sign-up").onclick = async () => {
+        await signUpUser()
+    }
+    document.getElementById("submit-admin-inp").onclick = async () => {
+        await signUpUser()
+        window.location = "/admin"
+    }
     document.getElementById("submit-sign-up").onclick = async () => {
         await signUpUser()
     }

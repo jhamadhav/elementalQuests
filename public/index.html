@@ -29,14 +29,15 @@
                 <div class="header login-inp">Sign in</div>
                 <div class="header signup-inp">Create Account</div>
                 <div class="header reset-inp">Reset Password</div>
+                <div class="header admin-inp">Admin Dashboard</div>
 
-                <label for="email" class="login-inp reset-inp signup-inp">Email Address</label>
-                <input type="email" required id="email" name="email" class="login-inp reset-inp signup-inp">
+                <label for="email" class="login-inp reset-inp signup-inp admin-inp">Email Address</label>
+                <input type="email" required id="email" name="email" class="login-inp reset-inp signup-inp admin-inp">
 
                 <br>
 
-                <label for="password" class="login-inp signup-inp">Password</label>
-                <input type="password" required id="password" name="password" class="login-inp signup-inp">
+                <label for="password" class="login-inp signup-inp admin-inp">Password</label>
+                <input type="password" required id="password" name="password" class="login-inp signup-inp admin-inp">
                 <span class="login-inp" id="pass-span">Forgot password ? <a href="/?type=reset">reset password</a>
                 </span>
                 <br>
@@ -58,9 +59,11 @@
 
                 <span class="reset-inp">Enter your Email Address to receive password reset link</span>
                 <button type="submit" id="submit-reset-password" class="reset-inp">Get Email</button>
+
+                <button type="submit" class="admin-inp" id="submit-admin-inp">Admin Log-in</button>
             </form>
 
-            <div id="footer"></div>
+            <div id="footer"> <a href="?type=admin">Admin Login</a> </div>
         </div>
         <div class="image-holder">
             <img src="./assets/images/bg.jpg" alt="" srcset="">
