@@ -33,9 +33,9 @@ window.onload = () => {
     makeDisplayNone(resetInp)
 
     let temp = loginInp
-    if (val == "signup") {
+    if (val == "signup" && appUser == {}) {
         temp = signInp
-    } else if (val == "reset") {
+    } else if (val == "reset" && appUser == {}) {
         temp = resetInp
     }
 
