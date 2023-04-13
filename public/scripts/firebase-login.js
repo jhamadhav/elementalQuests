@@ -86,8 +86,8 @@ window.onload = () => {
 
                 let url = new URL(window.location);
                 let val = url.searchParams.get("type")
-                if (val == "signup" || val == "reset") {
-                    iziToast.success({ title: "Redirect", message: "to login" })
+                if (val == "signup") {
+                    iziToast.success({ title: "Redirect", message: "to game" })
                     window.location = "/hello"
                     return
                 }
@@ -104,7 +104,8 @@ window.onload = () => {
             })
 
             // console.log(appUser)
-            iziToast.success({ title: "Success", message: "logged in" })
+
+            successMsg("logged in")
         } else {
             hideLoader()
             appUser = null
