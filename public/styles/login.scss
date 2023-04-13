@@ -93,10 +93,6 @@
      }
  }
 
- form {
-     background: transparent;
- }
-
  .holder {
      background: #fff;
      width: 90%;
@@ -111,7 +107,6 @@
 
      @media screen and (max-width: $mobile) {
          justify-content: center;
-
      }
 
      .form-holder {
@@ -124,7 +119,8 @@
          padding: 30px;
 
          @media screen and (max-width: $mobile) {
-             width: 90%;
+             width: 100%;
+             padding: 22px;
          }
 
          .app-name {
@@ -132,6 +128,7 @@
              color: $brown-dark;
              font-size: x-large;
              margin-top: -10px;
+             margin-bottom: 30px;
          }
 
          span {
@@ -146,12 +143,10 @@
          justify-content: center;
          align-items: flex-start;
          color: $brown-dark;
-         width: 55%;
+         width: 96%;
+         max-width: 350px;
          height: 80%;
 
-         @media screen and (max-width: $tab) {
-             width: 80%;
-         }
 
          //  background: cyan;
 
@@ -163,6 +158,10 @@
              &::after {
                  content: ' *';
                  color: $brown-dark;
+             }
+
+             @media screen and (max-width: $mobile) {
+                 font-size: medium;
              }
          }
 
@@ -251,6 +250,10 @@
                  width: 100%;
                  background: #262626;
                  padding: 10px 50px;
+             }
+
+             @media screen and (max-width: $tab) {
+                 font-size: x-large;
              }
          }
 
