@@ -20,34 +20,76 @@
      transition-duration: 300ms;
  }
 
- $bg-url: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC";
- $bg-width: 50px;
- $bg-height: 50px;
  $brown-dark:#523c28;
  $brown-light:#f9f3ee;
  $tab: 1040px;
  $mobile: 800px;
 
- #bg {
+
+ .loader-container {
      width: 100vw;
      height: 100vh;
      position: fixed;
      top: 0;
      left: 0;
+     background: #fff;
+     z-index: 100;
 
-     color: #999;
-     font: 400 16px/1.5 exo, ubuntu, "segoe ui", helvetica, arial, sans-serif;
-     text-align: center;
-     background: url($bg-url) repeat 0 0;
-     animation: bg-scrolling-reverse 1.92s infinite;
-     animation-timing-function: linear;
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     align-items: center;
 
-     z-index: -1;
+     font-family: 'Cormorant Garamond', serif;
+     color: $brown-dark;
+     font-size: x-large;
+
+     .loader {
+         position: absolute;
+         background: #efefef;
+         padding: 14px 32px;
+
+         display: flex;
+         flex-direction: row;
+         justify-content: center;
+         align-items: center;
+
+         border-radius: 4px;
+         overflow: hidden;
+         //  height: 450px;//  width: 350px;
+     }
+
+     .mov {
+         position: relative;
+         background: #efefef;
+         padding: 16px 36px;
+
+         display: flex;
+         flex-direction: row;
+         justify-content: center;
+         align-items: center;
+
+         border-radius: 4px;
+         overflow: hidden;
+
+         &::before {
+             content: "";
+             position: absolute;
+             width: 400px;
+             height: 400px;
+             background-image: conic-gradient(transparent, transparent, transparent, $brown-dark);
+             animation: rotate 2.5s linear infinite;
+         }
+     }
  }
 
- @keyframes bg-scrolling-reverse {
+ @keyframes rotate {
+     0% {
+         transform: rotate(0deg);
+     }
+
      100% {
-         background-position: $bg-width $bg-height;
+         transform: rotate(360deg);
      }
  }
 
