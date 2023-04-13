@@ -160,6 +160,11 @@
              font-size: large;
              cursor: pointer;
 
+             display: flex;
+             flex-direction: row;
+             justify-content: center;
+             align-items: center;
+
              text-transform: capitalize;
 
              &:hover {
@@ -251,5 +256,27 @@
 
      a {
          margin-right: 10px;
+     }
+ }
+
+ .btn-loader {
+     position: absolute;
+     width: 32px;
+     height: 32px;
+     border-radius: 50%;
+     border-top: 2px solid #fff;
+     animation: rot .8s infinite;
+
+     display: none;
+
+ }
+
+ @keyframes rot {
+     0% {
+         transform: rotate(0turn);
+     }
+
+     100% {
+         transform: rotate(1turn);
      }
  }

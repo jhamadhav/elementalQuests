@@ -44,25 +44,31 @@ window.onload = () => {
     }
 
     for (let i = 0; i < temp.length; ++i) {
-        temp[i].style.display = "block"
+        temp[i].style.display = "flex"
     }
 
     document.getElementById("submit-sign-up").onclick = async () => {
+        showBtnLoader()
         await signUpUser()
     }
     document.getElementById("submit-admin-inp").onclick = async () => {
+        showBtnLoader()
         await loginUser()
     }
     document.getElementById("submit-sign-up").onclick = async () => {
+        showBtnLoader()
         await signUpUser()
     }
     document.getElementById("submit-login").onclick = async () => {
+        showBtnLoader()
         await loginUser()
     }
     document.getElementById("submit-logout").onclick = async () => {
+        showBtnLoader()
         logoutUser()
     }
     document.getElementById("submit-reset-password").onclick = async () => {
+        showBtnLoader()
         resetPassword()
     }
 
@@ -126,9 +132,11 @@ const signUpUser = async () => {
         return
     }
 
-    let userCredential = await createUserWithEmailAndPassword(auth, userData.email, userData.pass)
     try {
+        let userCredential = await createUserWithEmailAndPassword(auth, userData.email, userData.pass)
+
         let user = userCredential.user
+
         console.log("user signed up");
         console.log(user);
 
@@ -153,8 +161,8 @@ const loginUser = async () => {
         errorMsg("Type in your password !")
         return
     }
-    let userCredential = await signInWithEmailAndPassword(auth, email, pass)
     try {
+        let userCredential = await signInWithEmailAndPassword(auth, email, pass)
         // let user = userCredential.user
         console.log("user logged in");
     } catch (e) {
@@ -206,9 +214,11 @@ const resetPassword = () => {
 }
 
 const successMsg = (txt) => {
+    hideBtnLoader()
     iziToast.success({ title: "Success", message: txt })
 }
 const errorMsg = (txt) => {
+    hideBtnLoader()
     iziToast.error({ title: "Error", message: txt })
 }
 
@@ -218,3 +228,26 @@ const makeDisplayNone = (elem) => {
     }
 }
 
+const showBtnLoader = () => {
+    let btnLoader = document.getElementsByClassName("btn-loader")
+    for (let i = 0; i < btnLoader.length; ++i) {
+        btnLoader[i].style.display = "block"
+    }
+
+    let btns = document.getElementsByTagName("button")
+    for (let i = 0; i < btns.length; ++i) {
+        btns[i].style.color = "transparent"
+    }
+}
+
+const hideBtnLoader = () => {
+    let btnLoader = document.getElementsByClassName("btn-loader")
+    for (let i = 0; i < btnLoader.length; ++i) {
+        btnLoader[i].style.display = "none"
+    }
+
+    let btns = document.getElementsByTagName("button")
+    for (let i = 0; i < btns.length; ++i) {
+        btns[i].style.color = "#fff"
+    }
+}
