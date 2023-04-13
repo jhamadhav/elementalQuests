@@ -89,13 +89,16 @@ window.onload = () => {
                 if (val == "signup" || val == "reset") {
                     iziToast.success({ title: "Redirect", message: "to login" })
                     window.location = "/hello"
+                    return
                 }
                 if (val == "admin") {
                     iziToast.success({ title: "Redirect", message: "to dashboard" })
                     window.location = "/admin"
+                    return
                 }
-
+                hideLoader()
             }).catch((error) => {
+                hideLoader()
                 console.log("Error while getting login info")
                 console.log(error);
             })
@@ -103,6 +106,7 @@ window.onload = () => {
             // console.log(appUser)
             iziToast.success({ title: "Success", message: "logged in" })
         } else {
+            hideLoader()
             appUser = null
             console.log("user not available");
         }
@@ -250,4 +254,9 @@ const hideBtnLoader = () => {
     for (let i = 0; i < btns.length; ++i) {
         btns[i].style.color = "#fff"
     }
+}
+
+const hideLoader = () => {
+    let loader = document.getElementsByClassName("loader-container")
+    loader[0].style.display = "none"
 }
