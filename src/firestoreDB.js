@@ -139,6 +139,14 @@ const updateGameDetail = (gameData, userdata, status) => {
     userdata["totalScore"] += score
     userdata["currentGame"]++
 
+    // add points to skill
+    for (let i = 0; i < gameData["skills"].length; ++i) {
+        let tempKey = gameData["skills"][i]
+        if (userdata["skillScore"].hasOwnProperty(tempKey) == false) {
+            userdata["skillScore"][tempKey] = 0
+        }
+        userdata["skillScore"][tempKey] += score
+    }
     writeData(email, userdata)
     console.log(`${email} for game ${currentGame} data updated`)
 }
