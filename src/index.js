@@ -23,8 +23,12 @@ app.get("/hello", checkAuth, (req, res) => {
 })
 
 app.get("/admin", checkAuth, (req, res, next) => {
-    hasRole(req, res, next, "admin")
-    res.send(JSON.stringify({ data: "hello admin !" }))
+    let cond = hasRole(req, "admin")
+    if (cond) {
+        res.send(JSON.stringify({ data: "hello admin !" }))
+        return
+    }
+    res.sendFile('403.html', { root: './public' });
 })
 
 app.get('*', (req, res) => {
