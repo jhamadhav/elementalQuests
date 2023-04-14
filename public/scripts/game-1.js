@@ -6,13 +6,15 @@ window.onload = () => {
     document.getElementById("ans-btn").onclick = async () => {
         showBtnLoader()
 
-        if (ans.value.length == 0) {
+        let trimAns = ans.value.trim()
+
+        if (trimAns.length == 0) {
             errorMsg("Enter Answer !")
             return
         }
 
         let data = {
-            answer: ans.value
+            answer: trimAns
         }
         // console.log(data);
         let res = await postData("/checkAnswer", data)

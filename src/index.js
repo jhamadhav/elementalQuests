@@ -13,7 +13,7 @@ app.use(cors())
 
 // custom modules
 const { checkAuth, hasRole } = require("./middleware/auth")
-const { readDoc, addUserToDB, readGameData, addGameToDB } = require("./firestoreDB")
+const { readDoc, addUserToDB, readGameData, addGameToDB, updateGameDetail } = require("./firestoreDB")
 
 app.get("/", checkAuth, (request, response) => {
     response.sendFile(__dirname + "../public/index.html");
@@ -54,7 +54,7 @@ app.get("/admin", checkAuth, (req, res) => {
 
 app.post("/checkAnswer", checkAuth, async (req, res) => {
     let data = req.body
-    console.log(data);
+    // console.log(data);
 
     let userAnswer = data["answer"]
 
@@ -69,10 +69,15 @@ app.post("/checkAnswer", checkAuth, async (req, res) => {
 
     if (gameAnswer == userAnswer) {
         // TODO: update db 
+        updateGameDetail(gameData, userDBdata, 1)
+
         // TODO: redirect user to game
         res.send(JSON.stringify({ status: 1, msg: "correct" }))
+
+        return
     }
     // TODO: update game attempt by one
+    updateGameDetail(gameData, userDBdata, 0)
     res.send(JSON.stringify({ status: 0, msg: "incorrect" }))
 
 })

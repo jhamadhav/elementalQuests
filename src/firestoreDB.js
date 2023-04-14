@@ -106,6 +106,42 @@ const addGameToDB = (data) => {
     }
 }
 
+const calcScore = (points, desiredTime, timeDiff) => {
+    // millisecond to minute
+    timeDiff = desiredTime / (60 * 1000)
+    diff = desiredTime - timeDiff
+    let score = points + 10 * diff
+    return Math.floor(Math.max(10, score))
+}
+
+const updateGameDetail = (gameData, userdata, status) => {
+    let email = userdata["email"]
+    let currentGame = userdata["currentGame"]
+
+    userdata["games"][currentGame]["attempts"]++
+
+    if (status == 0) {
+        writeData(email, userdata)
+        console.log(`${email} for game ${currentGame} incorrect attempt increased`)
+        return
+    }
+
+
+    userdata["games"][currentGame]["endTime"] = Date.now()
+    let timeDiff = userdata["games"][currentGame]["endTime"] - userdata["games"][currentGame]["startTime"]
+
+    let score = calcScore(gameData["points"], gameData["desiredFinishTime"], timeDiff)
+    score -= 5 * (userdata["games"][currentGame]["attempts"] - 1)
+
+    userdata["games"][currentGame]["score"] = score
+
+    userdata["totalScore"] += score
+    userdata["currentGame"]++
+
+    writeData(email, userdata)
+    console.log(`${email} for game ${currentGame} data updated`)
+}
+
 const func = async () => {
     let res = await readGameData(1)
     console.log(res);
@@ -115,4 +151,4 @@ const func = async () => {
 // func()
 
 
-module.exports = { readCollection, readDoc, writeData, addUserToDB, readGameData, addGameToDB }
+module.exports = { readCollection, readDoc, writeData, addUserToDB, readGameData, addGameToDB, updateGameDetail }
