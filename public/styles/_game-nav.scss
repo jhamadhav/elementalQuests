@@ -27,13 +27,14 @@ nav {
     font-family: 'Poppins', sans-serif;
 
     transition-duration: 300ms;
+    z-index: 10;
 }
 
 #appName {
     font-family: 'Cormorant Garamond', serif;
     color: $brown-dark;
     font-size: x-large;
-    padding: 12px;
+    padding: 16px;
 
     @media screen and (max-width: $mobile) {
         font-size: large;
