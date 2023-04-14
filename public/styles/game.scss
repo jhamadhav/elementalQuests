@@ -28,6 +28,7 @@ body {
     padding: 10px;
     color: $brown-dark;
     font-family: 'Montserrat Alternates', sans-serif;
+    margin-top: 40px;
 }
 
 p {
@@ -62,8 +63,6 @@ p {
     }
 
     button {
-        border: none;
-        outline: none;
         color: #fff;
         background: transparent;
         border-radius: 6px;
@@ -78,21 +77,11 @@ p {
         justify-content: center;
         align-items: center;
 
-        text-transform: capitalize;
-        letter-spacing: 1px;
         margin: 40px 0;
 
         @media screen and (max-width: $mobile) {
             font-size: medium;
             padding: 12px;
-        }
-
-        &:hover {
-            transform: scale(.95);
-        }
-
-        &:active {
-            transform: scale(.9);
         }
     }
 }

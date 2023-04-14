@@ -9,3 +9,19 @@ $brown-dark:#523c28;
 $brown-light:#f9f3ee;
 $tab: 1040px;
 $mobile: 800px;
+
+button {
+    border: none;
+    outline: none;
+
+    text-transform: capitalize;
+    letter-spacing: 1px;
+
+    &:hover {
+        transform: scale(.95);
+    }
+
+    &:active {
+        transform: scale(.9);
+    }
+}
