@@ -27,7 +27,8 @@ const checkAuth = (req, res, next) => {
                 res.send(JSON.stringify({ data: "You are not logged in" }))
             });
     } else {
-        res.send(JSON.stringify({ data: "You are not logged in" }))
+        res.sendFile('403.html', { root: './public' });
+        // res.send(JSON.stringify({ data: "You are not logged in" }))
     }
 }
 const hasRole = (req, res, next, role) => {
@@ -35,7 +36,7 @@ const hasRole = (req, res, next, role) => {
         next()
     } else {
         userUID = null
-        res.send(JSON.stringify({ data: "You do not have required authorization" }))
+        res.sendFile('403.html', { root: './public' });
     }
 }
 module.exports = { checkAuth, hasRole }
