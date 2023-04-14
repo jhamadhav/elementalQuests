@@ -22,6 +22,8 @@ window.onload = () => {
 
         if (res["status"] == 1) {
             successMsg("accepted")
+            successMsg("redirecting to next game")
+            window.location = "/game"
         } else {
             errorMsg("incorrect")
         }
