@@ -1,14 +1,22 @@
 window.onload = () => {
 
+    hideLoader()
+
     let ans = document.getElementById("answer")
     document.getElementById("ans-btn").onclick = async () => {
         showBtnLoader()
+
+        if (ans.value.length == 0) {
+            errorMsg("Enter Answer !")
+            return
+        }
+
         let data = {
             answer: ans.value
         }
-        console.log(data);
+        // console.log(data);
         let res = await postData("/checkAnswer", data)
-        console.log(res);
+        // console.log(res);
 
         if (res["status"] == 1) {
             successMsg("accepted")
