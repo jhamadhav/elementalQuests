@@ -126,6 +126,7 @@ const updateGameDetail = (gameData, userdata, status) => {
         return
     }
 
+    userdata["games"][currentGame]["answer"] = gameData["answer"]
 
     userdata["games"][currentGame]["endTime"] = Date.now()
     let timeDiff = userdata["games"][currentGame]["endTime"] - userdata["games"][currentGame]["startTime"]
