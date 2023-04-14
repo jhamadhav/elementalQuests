@@ -6,6 +6,7 @@
      border-radius: 4px;
      letter-spacing: 1px;
      text-transform: uppercase;
+     user-select: none;
  }
 
  p {
@@ -22,6 +23,7 @@
      flex-grow: 1;
      gap: 20px;
      margin: 30px;
+     user-select: none;
  }
 
  .map {
