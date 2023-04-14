@@ -13,6 +13,7 @@ app.use(cors())
 
 // custom modules
 const { checkAuth, hasRole } = require("./middleware/auth")
+const { addData, readDoc } = require("./firestoreDB")
 
 app.get("/", checkAuth, (request, response) => {
     response.sendFile(__dirname + "../public/index.html");
@@ -20,6 +21,20 @@ app.get("/", checkAuth, (request, response) => {
 
 app.get("/hello", checkAuth, (req, res) => {
     res.send(JSON.stringify({ data: "hello world !" }))
+})
+
+app.get("/game", checkAuth, async (req, res) => {
+
+    // check if user exists in db else add
+    let isUserInDB = await readDoc(req.userData.email)
+    if (isUserInDB == undefined) {
+        addUserToDB(req.userData.email)
+    }
+
+    let userDBdata = await readDoc(req.userData.email)
+    let currentGame = userDBdata["currentGame"]
+
+    res.sendFile(`game-${currentGame}.html`, { root: './public/gamePages' });
 })
 
 app.get("/admin", checkAuth, (req, res, next) => {

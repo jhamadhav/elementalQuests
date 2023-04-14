@@ -43,4 +43,4 @@ const hasRole = (req, role) => {
     }
     return false
 }
-module.exports = { checkAuth, hasRole }
+module.exports = { checkAuth, hasRole, app }

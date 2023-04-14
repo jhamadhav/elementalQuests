@@ -1,10 +1,5 @@
-const admin = require('firebase-admin')
-const serviceAccount = require("./../elemental-quests-firebase-firebase-adminsdk-zvpd8-ec0c36c9da.json")
-
+const { app } = require("./middleware/auth")
 const { getFirestore } = require("firebase-admin/firestore")
-
-
-const app = admin.initializeApp({ credential: admin.credential.cert(serviceAccount) })
 const db = getFirestore(app);
 
 
@@ -39,10 +34,10 @@ const readDoc = async (id) => {
     }
 }
 
-const writeData = (id) => {
+const writeData = (email, data) => {
     try {
         let res = db.collection("users")
-        res = res.doc(id).set({ "name": "again mj" })
+        res = res.doc(email).set(data)
         return res
     } catch (e) {
         console.log(`Error while writing data`);
@@ -52,10 +47,44 @@ const writeData = (id) => {
     }
 
 }
+
+const addUserToDB = (email) => {
+    let data = {
+        email,
+        endTime: Date.now(),
+        startTime: Date.now(),
+        currentGame: 1,
+        totalScore: 0,
+        games: {},
+        skillScore: {}
+    }
+    try {
+        writeData(email, data)
+        return true
+    } catch (e) {
+        console.log(`Error in adding user to DB: ${email}`);
+        console.log(e);
+        return false
+    }
+}
+let gameTemplate = {
+    answer: "null",
+    attempts: 0,
+    hintTaken: false,
+    score: 0,
+    startTime: 0,
+    endTime: 0
+}
+const addGameToDB = (email, data) => {
+
+}
+
 const func = async () => {
-    let res = await readDoc("jhamadhav28@gmail.com")
+    let res = addUserToDB("jhamd@rknec.edu")
     console.log(res);
+    // let now = Date.now()
+    // console.log(now);
 }
 // func()
 
-module.exports = { readCollection, readDoc, writeData }
+module.exports = { readCollection, readDoc, writeData, addUserToDB }
