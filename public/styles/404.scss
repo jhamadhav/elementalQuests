@@ -1,0 +1,140 @@
+@import "./fonts";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-family: 'Poppins', sans-serif;
+    transition-duration: 300ms;
+}
+
+.header {
+    width: 100%;
+    font-family: 'Cormorant Garamond', serif;
+    color: $brown-dark;
+    font-size: xx-large;
+    padding: 20px 24px;
+    text-align: left;
+}
+
+.container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+    @media screen and (max-width: $mobile) {
+        flex-direction: column-reverse;
+    }
+}
+
+.text-holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    width: 50%;
+    padding-left: 80px;
+
+    @media screen and (max-width: $tab) {
+        padding-left: 20px;
+    }
+
+    @media screen and (max-width: $mobile) {
+        width: 90%;
+        align-items: center;
+    }
+
+    h2 {
+        font-size: xx-large;
+        color: $brown-dark;
+        margin-bottom: 20px;
+        width: 100%;
+        max-width: 450px;
+        font-weight: bold;
+
+        @media screen and (max-width: $tab) {
+            font-size: x-large;
+        }
+    }
+
+    p {
+        max-width: 450px;
+        text-align: justify;
+        font-size: medium;
+    }
+}
+
+button {
+    border: none;
+    outline: none;
+    background: $brown-dark;
+    color: #fff;
+    border-radius: 8px;
+    width: 50%;
+    padding: 18px;
+    margin: 20px 0;
+    font-size: large;
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    text-transform: capitalize;
+
+    @media screen and (max-width: $mobile) {
+        width: 90%;
+    }
+
+    &:hover {
+        transform: scale(.95);
+    }
+
+    &:active {
+        transform: scale(.9);
+    }
+
+    a {
+        text-decoration: none;
+        font-family: inherit;
+        color: #fff;
+    }
+}
+
+.image-holder {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 20px;
+
+    @media screen and (max-width: $mobile) {
+        padding: 0;
+        margin-bottom: 40px;
+        width: 90%;
+        justify-content: center;
+    }
+
+    img {
+        width: 100%;
+        max-width: 500px;
+    }
+}
