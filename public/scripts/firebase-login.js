@@ -82,13 +82,14 @@ window.onload = () => {
             user.getIdToken(true).then((idToken) => {
                 // console.log("id token retrieved")
                 appUser.idToken = idToken
+                // console.log(idToken);
                 document.cookie = `idToken=${idToken}`;
 
                 let url = new URL(window.location);
                 let val = url.searchParams.get("type")
                 if (val == "signup") {
                     iziToast.success({ title: "Redirect", message: "to game" })
-                    window.location = "/hello"
+                    window.location = "/game"
                     return
                 }
                 if (val == "admin") {
@@ -141,11 +142,16 @@ const signUpUser = async () => {
         let userCredential = await createUserWithEmailAndPassword(auth, userData.email, userData.pass)
 
         let user = userCredential.user
+        let idToken = user["accessToken"]
+        document.cookie = `idToken=${idToken}`;
+
+        successMsg("signed up")
+        successMsg("redirecting to game")
+        window.location = "/game"
 
         console.log("user signed up");
         console.log(user);
 
-        successMsg("signed up")
     } catch (e) {
         console.log("signup failed");
         console.log(e);
@@ -168,13 +174,24 @@ const loginUser = async () => {
     }
     try {
         let userCredential = await signInWithEmailAndPassword(auth, email, pass)
-        // let user = userCredential.user
+        let user = userCredential.user
+        // console.log(user);
+        let idToken = user["accessToken"]
+        document.cookie = `idToken=${idToken}`;
+
+        successMsg("logged in")
+        window.location = "/game"
+
         console.log("user logged in");
     } catch (e) {
 
         // if already logged in move to game 
         if (appUser != null) {
-            window.location = "/hello"
+            // console.log("already logged in");
+            successMsg("Already logged in")
+            successMsg("Redirecting to game")
+            window.location = "/game"
+            return
         }
 
         console.log("login failed");
