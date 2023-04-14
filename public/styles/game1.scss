@@ -79,6 +79,28 @@
      }
  }
 
+ .btn-loader {
+     position: absolute;
+     width: 32px;
+     height: 32px;
+     border-radius: 50%;
+     border-top: 2px solid #fff;
+     animation: rot .8s infinite;
+
+     display: none;
+
+ }
+
+ @keyframes rot {
+     0% {
+         transform: rotate(0turn);
+     }
+
+     100% {
+         transform: rotate(1turn);
+     }
+ }
+
  .wrapper input {
      margin-bottom: 4px;
      outline: none;

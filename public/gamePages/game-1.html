@@ -19,6 +19,10 @@
 
     <title>Octet lock | Elemental Quests</title>
 
+    <!-- izitoast -->
+    <link rel="stylesheet" href="./styles/iziToast.min.css">
+    <script src="./scripts/iziToast.min.js"></script>
+
     <!-- styles added -->
     <link rel="stylesheet" href="./../styles/game.min.css">
     <link rel="stylesheet" href="./../styles/game1.min.css">
@@ -144,7 +148,10 @@
 
             <div class="ans-holder">
                 <input type="text" id="answer" placeholder="Enter key to open the lab">
-                <button id="ans-btn">Submit</button>
+                <button id="ans-btn" class="sub-btn">
+                    Submit
+                    <div class="btn-loader"></div>
+                </button>
             </div>
         </div>
     </div>

@@ -33,3 +33,42 @@ const closePopPage = (div) => {
 const openPopPage = (div) => {
     div.style.display = "flex"
 }
+
+// basic needed functions
+const successMsg = (txt) => {
+    hideBtnLoader()
+    iziToast.success({ title: "Success", message: txt })
+}
+const errorMsg = (txt) => {
+    hideBtnLoader()
+    iziToast.error({ title: "Error", message: txt })
+}
+
+const showBtnLoader = () => {
+    let btnLoader = document.getElementsByClassName("btn-loader")
+    for (let i = 0; i < btnLoader.length; ++i) {
+        btnLoader[i].style.display = "block"
+    }
+
+    let btns = document.getElementsByClassName("sub-btn")
+    for (let i = 0; i < btns.length; ++i) {
+        btns[i].style.color = "transparent"
+    }
+}
+
+const hideBtnLoader = () => {
+    let btnLoader = document.getElementsByClassName("btn-loader")
+    for (let i = 0; i < btnLoader.length; ++i) {
+        btnLoader[i].style.display = "none"
+    }
+
+    let btns = document.getElementsByClassName("sub-btn")
+    for (let i = 0; i < btns.length; ++i) {
+        btns[i].style.color = "#fff"
+    }
+}
+
+const hideLoader = () => {
+    let loader = document.getElementsByClassName("loader-container")
+    loader[0].style.display = "none"
+}

@@ -2,12 +2,19 @@ window.onload = () => {
 
     let ans = document.getElementById("answer")
     document.getElementById("ans-btn").onclick = async () => {
+        showBtnLoader()
         let data = {
             answer: ans.value
         }
         console.log(data);
         let res = await postData("/checkAnswer", data)
         console.log(res);
+
+        if (res["status"] == 1) {
+            successMsg("accepted")
+        } else {
+            errorMsg("incorrect")
+        }
     }
 }
 
