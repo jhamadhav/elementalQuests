@@ -17,19 +17,18 @@
     <link href="./../assets/images/logo.png" rel="icon" type="image/png" sizes="16x16">
     <link href="./../assets/images/logo.png" rel="icon" type="image/png" sizes="32x32">
 
-    <title>game 2 | Elemental Quests</title>
+    <title>Odd Drawer | Elemental Quests</title>
 
     <!-- izitoast -->
     <link rel="stylesheet" href="./styles/iziToast.min.css">
     <script src="./scripts/iziToast.min.js"></script>
 
     <!-- styles added -->
-    <link rel="stylesheet" href="./../styles/game.min.css">
     <link rel="stylesheet" href="./../styles/game1.min.css">
 
     <!-- scripts -->
-    <script src="./../scripts/game-nav.js"></script>
-    <script src="./../scripts/game-1.js"></script>
+    <script src="./../scripts/game-nav.js" defer></script>
+    <script src="./../scripts/game-1.js" defer></script>
 
 </head>
 
@@ -62,15 +61,19 @@
     <div class="game-container">
         <div class="wrapper">
 
-            <div class="game-header">Octet lock</div>
+            <div class="game-header">Odd Drawer</div>
             <p>
-                As per the given scenario, this given random encryption <span class="text-bg">abcdefghi</span> maps to
-                following: <br> <br>
-                <span class="text-bg">abcdefghi</span> &rarr; <span class="text-bg">cbkjilhq</span>
-                <br>
+
             </p>
 
 
+            <div class="ans-holder">
+                <input type="text" id="answer" placeholder="Enter key to open the lab">
+                <button id="ans-btn" class="sub-btn">
+                    Submit
+                    <div class="btn-loader"></div>
+                </button>
+            </div>
         </div>
     </div>
 
