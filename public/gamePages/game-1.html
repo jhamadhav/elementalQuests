@@ -22,6 +22,9 @@
     <!-- styles added -->
     <link rel="stylesheet" href="./../styles/game.min.css">
 
+    <!-- scripts -->
+    <script src="./../scripts/game-nav.js"></script>
+
 </head>
 
 <body>
@@ -31,8 +34,8 @@
             <div id="appName">elemental<b>Quests</b></div>
 
             <div id="links">
-                <button id="instuctions">Instructions</button>
-                <button id="story">Story</button>
+                <button id="instructions-nav">Instructions</button>
+                <button id="story-nav">Story</button>
                 <!-- <button id="logout">logout</button> -->
             </div>
         </div>
@@ -52,8 +55,50 @@
         </div>
     </div>
 
+    <!-- story area -->
+    <div class="game-container pop-page" id="story">
+        <div class="nav-container">
+            <div id="appName">elemental<b>Quests</b></div>
+        </div>
+
+        <div class="wrapper">
+            <div class="game-header">
+                Story:
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, sequi. Ratione quo maxime magnam,
+                corrupti quisquam minima quos, voluptatibus dolorem aperiam aliquid eligendi. Sapiente nulla quae
+                repellendus ad consectetur obcaecati id, quis molestiae exercitationem nemo eaque quaerat vel debitis
+                mollitia.
+            </p>
+
+            <div class="game-header">
+                Current Game Instructions:
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste cum explicabo quia accusantium veritatis
+                voluptatem illo vitae harum ut suscipit mollitia et veniam voluptatum, obcaecati neque maiores deleniti,
+                distinctio tenetur esse alias aliquid illum! Impedit natus eum tempore. Ad qui dolorem recusandae
+                quibusdam expedita. Placeat corrupti id qui exercitationem itaque laudantium, aliquam rem repudiandae
+                quia repellat ullam, hic debitis molestias labore nam! Modi reprehenderit provident deserunt quidem
+                illum asperiores debitis pariatur omnis saepe tenetur voluptate corporis ex distinctio id mollitia,
+                aperiam itaque iste dolore sequi sed ratione quos sunt. Cumque quisquam modi, rem labore nemo provident
+                quam ut vel fugit consectetur aut, dignissimos esse ipsam soluta corporis. Harum veritatis dolorem
+                molestias aliquam minus velit ex, quisquam pariatur numquam neque inventore alias vel. Placeat expedita
+                doloremque labore dolorum dolores necessitatibus qui impedit repellat eum architecto ab sed ad modi
+                voluptas ut similique nobis numquam totam asperiores, tenetur deserunt! Dolorum veniam, harum ex in ipsa
+                repudiandae consequuntur facere reprehenderit fuga alias. Repellendus voluptate cupiditate
+                exercitationem molestias odio facere maiores, sint nulla culpa, officia, in quis sit. Maxime corporis
+                error dolores cum eligendi doloribus itaque in. Voluptatum et ratione, deleniti nam reprehenderit porro
+                corrupti repudiandae omnis, molestiae sed in consectetur magnam eligendi amet?
+            </p>
+
+            <button id="story-btn">Next</button>
+        </div>
+    </div>
+
     <!-- instructions area -->
-    <div class="game-container pop-page">
+    <div class="game-container pop-page" id="instructions">
         <div class="nav-container">
             <div id="appName">elemental<b>Quests</b></div>
         </div>
@@ -89,10 +134,11 @@
                 error dolores cum eligendi doloribus itaque in. Voluptatum et ratione, deleniti nam reprehenderit porro
                 corrupti repudiandae omnis, molestiae sed in consectetur magnam eligendi amet?
             </p>
-
+            <button id="instructions-btn"> I Understand</button>
 
         </div>
     </div>
+
 </body>
 
 </html>
