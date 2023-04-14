@@ -14,10 +14,6 @@ app.use(cors())
 // custom modules
 const { checkAuth, hasRole } = require("./middleware/auth")
 
-app.get('*', (req, res) => {
-    res.sendFile('404.html', { root: './public' });
-});
-
 app.get("/", checkAuth, (request, response) => {
     response.sendFile(__dirname + "../public/index.html");
 });
@@ -30,6 +26,10 @@ app.get("/admin", checkAuth, (req, res, next) => {
     hasRole(req, res, next, "admin")
     res.send(JSON.stringify({ data: "hello admin !" }))
 })
+
+app.get('*', (req, res) => {
+    res.sendFile('404.html', { root: './public' });
+});
 
 // listen for requests :)
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
