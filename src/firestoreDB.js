@@ -33,6 +33,20 @@ const readDoc = async (id) => {
         return null
     }
 }
+const readGameData = async (id) => {
+    id = id.toString()
+
+    try {
+        let res = db.collection("games").doc(id)
+        res = await res.get()
+        res = await res.data()
+        return res
+    } catch (e) {
+        console.log(`Error while retrieving data from firestore via ID: ${id}`);
+        console.log(e);
+        return null
+    }
+}
 
 const writeData = (email, data) => {
     try {
@@ -80,11 +94,11 @@ const addGameToDB = (email, data) => {
 }
 
 const func = async () => {
-    let res = addUserToDB("jhamd@rknec.edu")
+    let res = await readGameData(1)
     console.log(res);
     // let now = Date.now()
     // console.log(now);
 }
 // func()
 
-module.exports = { readCollection, readDoc, writeData, addUserToDB }
+module.exports = { readCollection, readDoc, writeData, addUserToDB, readGameData }

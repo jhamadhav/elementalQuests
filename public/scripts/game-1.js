@@ -1,9 +1,9 @@
 window.onload = () => {
 
-    let ans = document.getElementById("answer").value
+    let ans = document.getElementById("answer")
     document.getElementById("ans-btn").onclick = async () => {
         let data = {
-            answer: ans
+            answer: ans.value
         }
         console.log(data);
         let res = await postData("/checkAnswer", data)
