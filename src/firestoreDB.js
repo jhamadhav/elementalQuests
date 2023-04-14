@@ -108,9 +108,12 @@ const addGameToDB = (data) => {
 
 const calcScore = (points, desiredTime, timeDiff) => {
     // millisecond to minute
-    timeDiff = desiredTime / (60 * 1000)
+    timeDiff = Math.floor(desiredTime / (60 * 1000))
+
     diff = desiredTime - timeDiff
+
     let score = points + 10 * diff
+
     return Math.floor(Math.max(10, score))
 }
 
@@ -148,7 +151,7 @@ const updateGameDetail = (gameData, userdata, status) => {
         userdata["skillScore"][tempKey] += score
     }
     writeData(email, userdata)
-    console.log(`${email} for game ${currentGame} data updated`)
+    console.log(`${email} for game ${currentGame} score updated`)
 }
 
 const func = async () => {
