@@ -21,6 +21,7 @@
 
     <!-- styles added -->
     <link rel="stylesheet" href="./../styles/game.min.css">
+    <link rel="stylesheet" href="./game-styles/game1.min.css">
 
     <!-- scripts -->
     <script src="./../scripts/game-nav.js"></script>
@@ -47,11 +48,103 @@
 
             <div class="game-header">Octet lock</div>
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, sequi. Ratione quo maxime magnam,
-                corrupti quisquam minima quos, voluptatibus dolorem aperiam aliquid eligendi. Sapiente nulla quae
-                repellendus ad consectetur obcaecati id, quis molestiae exercitationem nemo eaque quaerat vel debitis
-                mollitia.
+                As per the given scenario, this given random encryption <span class="text-bg">abcdefghi</span> maps to
+                following: <br> <br>
+                <span class="text-bg">abcdefghi</span> ➡️ <span class="text-bg">cbkjilhq</span>
+                <br>
             </p>
+
+            <div class="map-holder">
+                <div class="map">
+                    <span>a</span>
+                    <arrow>⬇️</arrow>
+                    <span>c</span>
+                </div>
+                <div class="map">
+                    <span>B</span>
+                    <arrow>⬇️</arrow>
+                    <span>B</span>
+                </div>
+                <div class="map">
+                    <span>C</span>
+                    <arrow>⬇️</arrow>
+                    <span>K</span>
+                </div>
+                <div class="map">
+                    <span>D</span>
+                    <arrow>⬇️</arrow>
+                    <span>J</span>
+                </div>
+                <div class="map">
+                    <span>E</span>
+                    <arrow>⬇️</arrow>
+                    <span>I</span>
+                </div>
+                <div class="map">
+                    <span>F</span>
+                    <arrow>⬇️</arrow>
+                    <span>L</span>
+                </div>
+                <div class="map">
+                    <span>G</span>
+                    <arrow>⬇️</arrow>
+                    <span>I</span>
+                </div>
+                <div class="map">
+                    <span>H</span>
+                    <arrow>⬇️</arrow>
+                    <span>H</span>
+                </div>
+                <div class="map">
+                    <span>I</span>
+                    <arrow>⬇️</arrow>
+                    <span>O</span>
+                </div>
+            </div>
+
+            <p>
+                What will be the key to unlock the lab's door if the encryption string is <span
+                    class="text-bg">jilgqm</span> ?
+            </p>
+
+            <div class="map-holder">
+                <div class="map">
+                    <span>J</span>
+                    <arrow>⬇️</arrow>
+                    <span>?</span>
+                </div>
+                <div class="map">
+                    <span>I</span>
+                    <arrow>⬇️</arrow>
+                    <span>I</span>
+                </div>
+                <div class="map">
+                    <span>L</span>
+                    <arrow>⬇️</arrow>
+                    <span>?</span>
+                </div>
+                <div class="map">
+                    <span>G</span>
+                    <arrow>⬇️</arrow>
+                    <span>?</span>
+                </div>
+                <div class="map">
+                    <span>Q</span>
+                    <arrow>⬇️</arrow>
+                    <span>?</span>
+                </div>
+                <div class="map">
+                    <span>M</span>
+                    <arrow>⬇️</arrow>
+                    <span>?</span>
+                </div>
+
+            </div>
+
+            <div class="ans-holder">
+                <input type="text" id="answer" placeholder="Key to open the lab">
+                <button id="ans-btn">Submit</button>
+            </div>
         </div>
     </div>
 
@@ -93,7 +186,7 @@
                 corrupti repudiandae omnis, molestiae sed in consectetur magnam eligendi amet?
             </p>
 
-            <button id="story-btn">Next</button>
+            <button id="story-btn">Move Next</button>
         </div>
     </div>
 

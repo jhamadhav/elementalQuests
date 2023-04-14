@@ -13,7 +13,7 @@ body {
 }
 
 .wrapper {
-    width: 98%;
+    width: 88%;
     max-width: 800px;
     display: flex;
     flex-direction: column;
@@ -47,7 +47,8 @@ p {
     overflow-y: scroll;
     z-index: 100;
 
-    // display: none;
+    // blow lin only on while under developement
+    display: none;
 
     .game-header {
         margin-top: 40px;
