@@ -13,7 +13,7 @@ app.use(cors())
 
 // custom modules
 const { checkAuth, hasRole } = require("./middleware/auth")
-const { readDoc, addUserToDB, readGameData } = require("./firestoreDB")
+const { readDoc, addUserToDB, readGameData, addGameToDB } = require("./firestoreDB")
 
 app.get("/", checkAuth, (request, response) => {
     response.sendFile(__dirname + "../public/index.html");
@@ -33,6 +33,12 @@ app.get("/game", checkAuth, async (req, res) => {
 
     let userDBdata = await readDoc(req.userData.email)
     let currentGame = userDBdata["currentGame"]
+
+    // if game data is not feed add that
+    let len = Object.keys(userDBdata["games"]).length
+    if (len != currentGame) {
+        addGameToDB(userDBdata)
+    }
 
     res.sendFile(`game-${currentGame}.html`, { root: './public/gamePages' });
 })

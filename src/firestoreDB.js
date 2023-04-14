@@ -59,7 +59,6 @@ const writeData = (email, data) => {
         console.log(e);
         return null
     }
-
 }
 
 const addUserToDB = (email) => {
@@ -89,8 +88,22 @@ let gameTemplate = {
     startTime: 0,
     endTime: 0
 }
-const addGameToDB = (email, data) => {
+const addGameToDB = (data) => {
+    let email = data["email"]
+    let currentGame = data["currentGame"]
 
+    let newGame = gameTemplate
+    newGame["startTime"] = Date.now()
+    newGame["endTime"] = Date.now()
+
+    data["games"][currentGame] = newGame
+    // console.log(data);
+    try {
+        writeData(email, data)
+        console.log(`game added for: ${email}, game: ${currentGame}`);
+    } catch (e) {
+        console.log(`error while adding game: ${email}`);
+    }
 }
 
 const func = async () => {
@@ -101,4 +114,5 @@ const func = async () => {
 }
 // func()
 
-module.exports = { readCollection, readDoc, writeData, addUserToDB, readGameData }
+
+module.exports = { readCollection, readDoc, writeData, addUserToDB, readGameData, addGameToDB }
