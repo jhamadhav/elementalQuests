@@ -56,7 +56,7 @@ app.post("/checkAnswer", checkAuth, async (req, res) => {
     let data = req.body
     // console.log(data);
 
-    let userAnswer = data["answer"]
+    let userAnswer = data["answer"].toLowerCase()
 
     let userDBdata = await readDoc(req.userData.email)
     let currentGame = userDBdata["currentGame"]
@@ -65,7 +65,7 @@ app.post("/checkAnswer", checkAuth, async (req, res) => {
     let gameData = await readGameData(currentGame)
     // console.log(gameData);
 
-    let gameAnswer = gameData["answer"]
+    let gameAnswer = gameData["answer"].toLowerCase()
 
     if (gameAnswer == userAnswer) {
         // TODO: update db 
