@@ -14,6 +14,10 @@ app.use(cors())
 // custom modules
 const { checkAuth, hasRole } = require("./middleware/auth")
 
+app.get('*', (req, res) => {
+    res.sendFile('404.html', { root: './public' });
+});
+
 app.get("/", checkAuth, (request, response) => {
     response.sendFile(__dirname + "../public/index.html");
 });
