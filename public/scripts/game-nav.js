@@ -1,3 +1,32 @@
+
+let url = new URL(window.location);
+let val = url.searchParams.get("page")
+
+if (val == "deadend") {
+    let retBtn = document.getElementById("return-to-game")
+    retBtn.display = "flex"
+
+    let otherBtn = document.getElementsByClassName("ans-holder")
+    for (let i = 0; i < otherBtn.length; ++i) {
+        otherBtn[i].style.display = "none"
+    }
+
+
+    retBtn.onclick = () => {
+        successMsg("Moving to game area")
+        window.location = "/game"
+        return
+    }
+
+    // if on game 4 hide game window as well
+    try {
+        document.getElementById("game-screen").style.display = "none"
+    } catch (e) {
+        console.log("game window hidden for game 4");
+    }
+}
+
+
 // pop pages
 let instructionsDiv = document.getElementById("instructions")
 let storyDiv = document.getElementById("story")

@@ -154,6 +154,21 @@ app.post("/endGame", checkAuth, async (req, res) => {
     res.send(JSON.stringify({ status: 1, msg: "correct" }))
 })
 
+app.get("/dead-end-look-up", checkAuth, async (req, res) => {
+    let userDBdata = await readDoc(req.userData.email)
+    let currentGame = userDBdata["currentGame"]
+
+    let gameReq = req.query.game
+    if (gameReq < currentGame && gameReq > 0 && userDBdata["hasEnded"] == false) {
+        // send user th appropriate page 
+        res.sendFile(`game-${gameReq}.html`, { root: './public/gamePages' });
+        return
+    }
+    // send user th appropriate page 
+    res.redirect("/game")
+
+})
+
 
 app.get('*', (req, res) => {
     res.sendFile('404.html', { root: './public' });
