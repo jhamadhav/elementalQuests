@@ -84,7 +84,7 @@ const addUserToDB = (email) => {
 let gameTemplate = {
     answer: "null",
     attempts: 0,
-    hintTaken: false,
+    // hintTaken: false,
     score: 0,
     startTime: 0,
     endTime: 0
