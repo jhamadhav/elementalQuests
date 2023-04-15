@@ -15,10 +15,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth()
 
-let { min, max, round } = Math
+let { min, max, round, floor } = Math
 
 window.onload = async () => {
-    hideLoader()
+
+    setTimeout(() => {
+        hideLoader()
+    }, 2000);
+
     document.getElementById("submit-logout").onclick = async () => {
         logoutUser()
     }
@@ -169,6 +173,39 @@ const displayResult = (data) => {
         }
 
     });
+
+    let games = Object.keys(data["userData"]["games"])
+    let timeData = []
+    let totalTime = 0
+    for (let i = 0; i < games.length; ++i) {
+        let diff = data["userData"]["games"][games[i]]["endTime"] - data["userData"]["games"][games[i]]["startTime"]
+        diff = round(diff / (60 * 1000), 4)
+
+        totalTime += diff
+
+        let name = `stage-${games[i]}`
+        timeData.push([name, diff])
+    }
+    // time spent on each game pie chart
+    Highcharts.chart('game-time-chart', {
+        chart: {
+            styledMode: true
+        },
+        title: {
+            text: `Total Time Taken: ${totalTime} minutes`
+        },
+        xAxis: {
+            categories: []
+        },
+        series: [{
+            type: 'pie',
+            allowPointSelect: true,
+            keys: ['name', 'y', 'selected', 'sliced'],
+            data: timeData,
+            showInLegend: true
+        }]
+    });
+
 }
 
 const getData = async (url = "") => {
