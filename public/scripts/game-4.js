@@ -15,7 +15,7 @@ window.onload = () => {
         showBtnLoader()
 
         let reqData = {
-            answer: (data["red"] <= 100 && data["gold"] <= 50) ? "true" : "false"
+            answer: [data["red"], data["gold"]]
         }
         // console.log(data);
         let res = await postData("/checkAnswer", reqData)

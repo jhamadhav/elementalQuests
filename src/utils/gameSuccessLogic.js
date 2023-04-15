@@ -32,10 +32,36 @@ const dummy = (gameData, userData, userAnswer) => {
         score: 0
     }
 }
+
+const gameFour = (gameData, userData, userAnswer) => {
+    let failData = {
+        status: 0,
+        score: 0
+    }
+
+    if (userAnswer.length < 2) return failData
+
+    let iron = userAnswer[0]
+    let copper = userAnswer[1]
+
+    if (iron > 100 || copper > 50) return failData
+
+    // console.log(gameData["points"]);
+    let score = gameData["points"] - Math.abs(100 - iron) - Math.abs(50 - copper)
+
+    let currentGame = userData["currentGame"]
+    score -= 5 * (userData["games"][currentGame]["attempts"] - 1)
+    // console.log(score);
+
+    return {
+        status: 1,
+        score
+    }
+}
 const gameLogic = {
     1: gameOneTwo,
     2: gameOneTwo,
     3: dummy,
-    4: dummy
+    4: gameFour
 }
 module.exports = { gameLogic }
