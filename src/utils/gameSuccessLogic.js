@@ -16,11 +16,12 @@ const gameOneTwo = (gameData, userData, userAnswer) => {
     // millisecond to minute
     timeDiff = Math.floor(timeDiff / (60 * 1000))
 
-    diff = desiredTime - timeDiff
+    diff = desiredTime - Math.abs(timeDiff)
+    diff = Math.min(diff, desiredTime)
 
     let score = points + 10 * diff
     score = Math.floor(Math.max(10, score))
-    score -= 5 * (userData["games"][currentGame]["attempts"] - 1)
+    score -= Math.abs(5 * (userData["games"][currentGame]["attempts"]))
 
     return {
         status: 1,
@@ -34,12 +35,14 @@ const gameThree = (gameData, userData) => {
     let timeDiff = Date.now() - userData["games"][currentGame]["startTime"]
 
     let points = gameData["points"], desiredTime = gameData["desiredFinishTime"]
+
     // millisecond to minute
     timeDiff = Math.floor(timeDiff / (60 * 1000))
 
-    let diff = desiredTime - timeDiff
+    diff = desiredTime - Math.abs(timeDiff)
+    diff = Math.min(diff, desiredTime)
 
-    let score = points - 10 * diff
+    let score = points + 10 * diff
     score = Math.floor(Math.max(10, score))
 
     return {
@@ -66,7 +69,7 @@ const gameFour = (gameData, userData, userAnswer) => {
     let score = gameData["points"] - Math.abs(100 - iron) - Math.abs(50 - copper)
 
     let currentGame = userData["currentGame"]
-    score -= 5 * (userData["games"][currentGame]["attempts"] - 1)
+    score -= Math.abs(5 * (userData["games"][currentGame]["attempts"] - 1))
     // console.log(score);
 
     return {
