@@ -20,8 +20,17 @@
     <title>Result | Elemental Quests</title>
 
     <!-- izitoast -->
-    <link rel="stylesheet" type="text/css" href="./styles/iziToast.min.css">
-    <script src="./scripts/iziToast.min.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="./styles/iziToast.min.css">
+    <script src="./scripts/iziToast.min.js"></script> -->
+
+
+    <!-- high charts scripts -->
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
     <!-- styles added -->
     <link rel="stylesheet" href="./../styles/result.min.css">
@@ -60,7 +69,23 @@
     <div class="game-container">
         <div class="wrapper">
 
-            <div class="game-header">Result</div>
+            <div class="game-header">Your results are here !</div>
+
+            <div id="total-score">
+
+            </div>
+
+            <div class="game-header">Soft Skill score: </div>
+
+            <div id="skill-bar-graph">
+
+            </div>
+
+            <div class="game-header">Spider-web chart: Soft Skill: </div>
+
+            <div id="skill-spider-web-graph">
+
+            </div>
 
         </div>
     </div>
