@@ -68,6 +68,7 @@ const addUserToDB = (email) => {
         startTime: Date.now(),
         currentGame: 1,
         totalScore: 0,
+        hasEnded: false,
         games: {},
         skillScore: {}
     }
@@ -106,17 +107,6 @@ const addGameToDB = (data) => {
     }
 }
 
-const calcScore = (points, desiredTime, timeDiff) => {
-    // millisecond to minute
-    timeDiff = Math.floor(desiredTime / (60 * 1000))
-
-    diff = desiredTime - timeDiff
-
-    let score = points + 10 * diff
-
-    return Math.floor(Math.max(10, score))
-}
-
 const updateGameDetail = (gameData, userdata, logic) => {
     let email = userdata["email"]
     let currentGame = userdata["currentGame"]
@@ -131,7 +121,7 @@ const updateGameDetail = (gameData, userdata, logic) => {
         return
     }
 
-    userdata["games"][currentGame]["answer"] = gameData["answer"]
+    // userdata["games"][currentGame]["answer"] = gameData["answer"]
 
     userdata["games"][currentGame]["endTime"] = Date.now()
 
@@ -154,6 +144,43 @@ const updateGameDetail = (gameData, userdata, logic) => {
     console.log(`${email} for game ${currentGame} score updated`)
 }
 
+const updateGlobalScore = async (userData) => {
+    let globalData = await readGameData("global")
+    // console.log(globalData);
+
+    if (Object.keys(globalData).indexOf("finalScore") == -1) {
+        globalData["finalScore"] = []
+    }
+    globalData["finalScore"].push(userData["totalScore"])
+
+    if (Object.keys(globalData).indexOf("finishTime") == -1) {
+        globalData["finishTime"] = []
+    }
+    globalData["finishTime"].push(userData["totalTime"])
+
+    if (Object.keys(globalData).indexOf("skills") == -1) {
+        globalData["skills"] = {}
+    }
+
+    let skills = Object.keys(userData["skillScore"])
+    for (let i = 0; i < skills.length; ++i) {
+        skills[i] = skills[i].toString()
+        if (Object.keys(globalData["skills"]).indexOf(skills[i]) == -1) {
+            globalData["skills"][skills[i]] = []
+        }
+        globalData["skills"][skills[i]].push(userData["skillScore"][skills[i]])
+    }
+    // console.log(globalData);
+
+    try {
+        db.collection("games").doc("global").set(globalData)
+        console.log(`Game ended for: ${userData["email"]}`);
+    } catch (e) {
+        console.log(`"Error while ending game for: ${userData["email"]}`);
+        console.log(e);
+    }
+}
+
 const func = async () => {
     let res = await readGameData(1)
     console.log(res);
@@ -163,4 +190,4 @@ const func = async () => {
 // func()
 
 
-module.exports = { readCollection, readDoc, writeData, addUserToDB, readGameData, addGameToDB, updateGameDetail }
+module.exports = { readCollection, readDoc, writeData, addUserToDB, readGameData, addGameToDB, updateGameDetail, updateGlobalScore }

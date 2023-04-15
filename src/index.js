@@ -13,7 +13,7 @@ app.use(cors())
 
 // custom modules
 const { checkAuth, hasRole } = require("./middleware/auth")
-const { readDoc, addUserToDB, readGameData, addGameToDB, updateGameDetail } = require("./firestoreDB")
+const { readDoc, addUserToDB, readGameData, addGameToDB, updateGameDetail, updateGlobalScore } = require("./firestoreDB")
 const { gameLogic } = require("./utils/gameSuccessLogic")
 
 app.get("/", checkAuth, (request, response) => {
@@ -34,6 +34,11 @@ app.get("/game", checkAuth, async (req, res) => {
 
     let userDBdata = await readDoc(req.userData.email)
     let currentGame = userDBdata["currentGame"]
+
+    if (userDBdata["hasEnded"] == true) {
+        res.sendFile('result.html', { root: './public' });
+        return
+    }
 
     // if game data is not feed add that
     let len = Object.keys(userDBdata["games"]).length
@@ -63,6 +68,8 @@ app.post("/checkAnswer", checkAuth, async (req, res) => {
     let currentGame = userDBdata["currentGame"]
     // console.log(currentGame)
 
+    userDBdata["games"][currentGame]["answer"] = userAnswer.toString()
+
     let gameData = await readGameData(currentGame)
     // console.log(gameData);
 
@@ -81,6 +88,55 @@ app.post("/checkAnswer", checkAuth, async (req, res) => {
     res.send(JSON.stringify({ status: 0, msg: "incorrect" }))
 
 })
+app.post("/skipGame", checkAuth, async (req, res) => {
+
+    let userDBdata = await readDoc(req.userData.email)
+    let currentGame = userDBdata["currentGame"]
+    // console.log(currentGame)
+
+    let gameData = await readGameData(currentGame)
+    // console.log(gameData);
+
+    let logic = {
+        status: 1,
+        score: 0
+    }
+
+    updateGameDetail(gameData, userDBdata, logic)
+
+    res.send(JSON.stringify({ status: 1, msg: "correct" }))
+
+})
+
+app.post("/endGame", checkAuth, async (req, res) => {
+
+    let userDBdata = await readDoc(req.userData.email)
+    let currentGame = userDBdata["currentGame"]
+    // console.log(currentGame)
+
+    userDBdata["hasEnded"] = true
+    userDBdata["endTime"] = Date.now()
+
+    let finishTime = userDBdata["endTime"] - userDBdata["startTime"]
+    finishTime = Math.floor(finishTime / (60 * 1000))
+
+    userDBdata["totalTime"] = finishTime
+    let gameData = await readGameData(currentGame)
+    // console.log(gameData);
+
+    let logic = {
+        status: 1,
+        score: 0
+    }
+
+    updateGameDetail(gameData, userDBdata, logic)
+
+    updateGlobalScore(userDBdata)
+
+    res.send(JSON.stringify({ status: 1, msg: "correct" }))
+
+})
+
 
 app.get('*', (req, res) => {
     res.sendFile('404.html', { root: './public' });

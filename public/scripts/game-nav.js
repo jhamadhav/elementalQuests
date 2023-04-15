@@ -26,6 +26,59 @@ document.getElementById("instructions-nav").onclick = () => {
     openPopPage(instructionsDiv)
 }
 
+// skip this game
+document.getElementById("skip-btn").onclick = async () => {
+    showBtnLoader()
+    let ans = prompt("You won't gain any points in this game, type Y to skip ?")
+    console.log(ans);
+    ans = ans.trim()
+    ans = ans.toLocaleLowerCase()
+    if (ans != "y") {
+        successMsg("Not Skipped")
+        return
+    }
+    // console.log(data);
+    let res = await postData("/skipGame", {})
+    // console.log(res);
+
+    if (res["status"] == 1) {
+        successMsg("accepted")
+        successMsg("redirecting to next game")
+        window.location = "/game"
+    } else {
+        errorMsg("incorrect")
+    }
+    successMsg("Skipped this game")
+    successMsg("Moving to next game")
+}
+
+// end test
+document.getElementById("end-test-btn").onclick = async () => {
+    showBtnLoader()
+    let ans = prompt("Are you sure want to end the test ? Type Y to End now.")
+    console.log(ans);
+    ans = ans.trim()
+    ans = ans.toLocaleLowerCase()
+    if (ans != "y") {
+        successMsg("Not ended")
+        return
+    }
+    // console.log(data);
+    let res = await postData("/endGame", {})
+    // console.log(res);
+
+    if (res["status"] == 1) {
+        successMsg("accepted")
+        successMsg("redirecting to score")
+        window.location = "/game"
+        return
+    } else {
+        errorMsg("incorrect")
+    }
+    successMsg("Skipped this game")
+    successMsg("Moving to next game")
+}
+
 
 const closePopPage = (div) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
