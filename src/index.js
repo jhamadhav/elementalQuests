@@ -31,7 +31,14 @@ app.get("/game", checkAuth, async (req, res) => {
 
     // get current game
     let userDBdata = await readDoc(req.userData.email)
-    let currentGame = userDBdata["currentGame"]
+    let currentGame = 1
+    try {
+        currentGame = userDBdata["currentGame"]
+    } catch (e) {
+        console.log("Error while accessing current game");
+        console.log(e);
+        res.redirect("/")
+    }
 
     // if game has ended move to result area
     if (userDBdata["hasEnded"] == true || currentGame > 5) {
