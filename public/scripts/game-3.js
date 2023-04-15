@@ -5,19 +5,14 @@ window.onload = () => {
     document.getElementById("ans-btn").onclick = async () => {
         showBtnLoader()
 
-        // let reqData = {
-        //     answer: [data["red"], data["gold"]]
-        // }
-        // // console.log(data);
-        // let res = await postData("/checkAnswer", reqData)
-        // // console.log(res);
+        let res = await postData("/checkAnswer", {})
 
-        // if (res["status"] == 1) {
-        //     successMsg("accepted")
-        //     successMsg("redirecting to next game")
-        //     window.location = "/game"
-        // } else {
-        //     errorMsg("incorrect")
-        // }
+        if (res["status"] == 1) {
+            successMsg("accepted")
+            successMsg("redirecting to next game")
+            window.location = "/game"
+        } else {
+            errorMsg("incorrect")
+        }
     }
 }

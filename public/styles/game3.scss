@@ -11,3 +11,15 @@ iframe {
     outline: none;
     border: none;
 }
+
+ol {
+    width: 90%;
+    text-align: left;
+    margin: 20px 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: large;
+
+    li {
+        margin-bottom: 6px;
+    }
+}
