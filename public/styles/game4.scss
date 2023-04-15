@@ -1,0 +1,66 @@
+@import "./game";
+
+.pop-page {
+    // below line only on while under development
+    display: none;
+}
+
+.text-bg {
+    line-height: 30px;
+    background: #ddd;
+}
+
+.red {
+    background: tomato;
+}
+
+.gold {
+    background: gold;
+}
+
+.silver {
+    background: silver;
+}
+
+#game-screen {
+    width: 100%;
+    height: auto;
+    min-height: 90vh;
+    position: sticky;
+    top: 10px;
+    background: #efefef;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.ans-holder {
+    button {
+        margin-bottom: 6px;
+    }
+}
+
+$mineral-size: 50px;
+
+.mineral {
+    position: absolute;
+    width: $mineral-size;
+    height: $mineral-size;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    transition-duration: 300ms;
+    margin-left: 0;
+    margin-top: 0;
+
+    &:hover {
+        transform: scale(.95);
+    }
+
+    &:active {
+        transform: scale(0);
+    }
+}
