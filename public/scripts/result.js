@@ -1,102 +1,3 @@
-let data = {
-    "userData": {
-        "skillScore": {
-            "critical-thinking": 155,
-            "memory": 23,
-            "perseverance": 140,
-            "stress-management": 48,
-            "problem-solving": 155,
-            "eye-for-detail": 235
-        },
-        "hasEnded": true,
-        "totalTime": 2,
-        "games": {
-            "1": {
-                "score": 155,
-                "answer": "litmus",
-                "startTime": 1681575513293,
-                "endTime": 1681575545042,
-                "attempts": 1
-            },
-            "2": {
-                "score": 0,
-                "answer": "null",
-                "startTime": 1681575547088,
-                "endTime": 1681575566318,
-                "attempts": 1
-            },
-            "3": {
-                "score": 60,
-                "answer": "null",
-                "startTime": 1681575568366,
-                "endTime": 1681575613629,
-                "attempts": 1
-            },
-            "4": {
-                "score": 0,
-                "answer": "null",
-                "startTime": 1681575615677,
-                "endTime": 1681575631750,
-                "attempts": 1
-            },
-            "5": {
-                "score": 80,
-                "answer": "no,no,no,no,no,No,Yes,No,Yes,0",
-                "startTime": 1681575633798,
-                "endTime": 1681575642200,
-                "attempts": 1
-            }
-        },
-        "startTime": 1681575511637,
-        "endTime": 1681575640865,
-        "currentGame": 6,
-        "totalScore": 295,
-        "email": "jhamadhav28@gmail.com"
-    },
-    "globalData": {
-        "skills": {
-            "critical-thinking": [
-                155
-            ],
-            "memory": [
-                0
-            ],
-            "perseverance": [
-                140
-            ],
-            "stress-management": [
-                0
-            ],
-            "problem-solving": [
-                155
-            ],
-            "eye-for-detail": [
-                235
-            ]
-        },
-        "finalScore": [
-            295
-        ],
-        "finishTime": [
-            2
-        ]
-    },
-    "maxData": {
-        "totalScore": 1000,
-        "skills": {
-            "problem-solving": 310,
-            "critical-thinking": 150,
-            "eye-for-detail": 320,
-            "memory": 540,
-            "patience": 520,
-            "focus": 520,
-            "stress-management": 380,
-            "emotional-intelligence": 170
-        }
-    }
-}
-
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
 import { getAuth, signOut } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js'
 
@@ -122,9 +23,9 @@ window.onload = async () => {
         logoutUser()
     }
 
-    // let res = await getData("/result")
-    let res = data
-    console.log(res);
+    let res = await getData("/result")
+    // let res = data
+    // console.log(res);
 
     displayResult(res)
 }
@@ -141,7 +42,6 @@ const displayResult = (data) => {
 
         let num = data["userData"]["skillScore"][skills[i]] * 100 / data["maxData"]["skills"][skills[i]]
         num = round(num, 2)
-        num = min(num, 97.32)
 
         skillPoints.push(num)
         skillsData.push([skills[i].toString(), num])
@@ -154,7 +54,7 @@ const displayResult = (data) => {
             type: 'column'
         },
         title: {
-            text: ' '
+            text: 'Soft skill bar-graph '
         },
         subtitle: {
             text: ''
@@ -199,7 +99,7 @@ const displayResult = (data) => {
         }]
     });
 
-    // skill map
+    // skill spider-web-graph
     Highcharts.chart('skill-spider-web-graph', {
 
         chart: {
@@ -212,7 +112,7 @@ const displayResult = (data) => {
         },
 
         title: {
-            text: 'skill-spider-web-graph',
+            text: 'Soft skill: spiderweb graph',
             x: -80
         },
 

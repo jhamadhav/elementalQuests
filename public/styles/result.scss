@@ -1,5 +1,9 @@
 @import "./game", "./highcharts";
 
+.game-header {
+    margin-bottom: 30px;
+}
+
 #total-score {
     font-size: xx-large;
     margin: 40px 0;
