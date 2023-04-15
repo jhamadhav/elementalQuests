@@ -121,6 +121,10 @@ const signUpUser = async () => {
     userData.confPass = document.getElementById("confirm-password").value
     console.log(userData);
 
+
+    userData.email = userData.email.trim()
+    userData.pass = userData.pass.trim()
+    userData.confPass = userData.confPass.trim()
     if (userData.email == "") {
         errorMsg("Type in your email !")
         return
@@ -140,7 +144,7 @@ const signUpUser = async () => {
     try {
         let userCredential = await createUserWithEmailAndPassword(auth, userData.email, userData.pass)
 
-        let user = userCredential.user
+        let user = await userCredential.user
         let idToken = user["accessToken"]
         document.cookie = `idToken=${idToken}`;
 
@@ -171,6 +175,8 @@ const loginUser = async () => {
         errorMsg("Type in your password !")
         return
     }
+    email = email.trim()
+    pass = pass.trim()
     try {
         let userCredential = await signInWithEmailAndPassword(auth, email, pass)
         let user = userCredential.user
