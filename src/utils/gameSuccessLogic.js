@@ -12,8 +12,9 @@ const gameOneTwo = (gameData, userData, userAnswer) => {
     let timeDiff = userData["games"][currentGame]["endTime"] - userData["games"][currentGame]["startTime"]
 
     let points = gameData["points"], desiredTime = gameData["desiredFinishTime"]
+
     // millisecond to minute
-    timeDiff = Math.floor(desiredTime / (60 * 1000))
+    timeDiff = Math.floor(timeDiff / (60 * 1000))
 
     diff = desiredTime - timeDiff
 
@@ -26,12 +27,27 @@ const gameOneTwo = (gameData, userData, userAnswer) => {
         score
     }
 }
-const dummy = (gameData, userData, userAnswer) => {
+const gameThree = (gameData, userData) => {
+
+    let currentGame = userData["currentGame"]
+
+    let timeDiff = userData["games"][currentGame]["endTime"] - userData["games"][currentGame]["startTime"]
+
+    let points = gameData["points"], desiredTime = gameData["desiredFinishTime"]
+    // millisecond to minute
+    timeDiff = Math.floor(timeDiff / (60 * 1000))
+
+    let diff = desiredTime - timeDiff
+
+    let score = points - 10 * diff
+    score = Math.floor(Math.max(10, score))
+
     return {
-        status: 0,
-        score: 0
+        status: 1,
+        score
     }
 }
+
 
 const gameFour = (gameData, userData, userAnswer) => {
     let failData = {
@@ -58,10 +74,20 @@ const gameFour = (gameData, userData, userAnswer) => {
         score
     }
 }
+
+
+const dummy = (gameData, userData, userAnswer) => {
+    return {
+        status: 0,
+        score: 0
+    }
+}
+
 const gameLogic = {
     1: gameOneTwo,
     2: gameOneTwo,
-    3: dummy,
+    3: gameThree,
     4: gameFour
 }
+
 module.exports = { gameLogic }

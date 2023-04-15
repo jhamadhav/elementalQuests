@@ -5,7 +5,7 @@ window.onload = () => {
     document.getElementById("ans-btn").onclick = async () => {
         showBtnLoader()
 
-        let res = await postData("/checkAnswer", {})
+        let res = await postData("/checkAnswer", { answer: "null" })
 
         if (res["status"] == 1) {
             successMsg("accepted")
