@@ -26,7 +26,13 @@ window.onload = () => {
             successMsg("redirecting to next game")
             window.location = "/game"
         } else {
+            data = {
+                "red": 0,
+                "gold": 0
+            }
             errorMsg("incorrect")
+            errorMsg("collection of iron set to 0")
+            errorMsg("collection of copper set to 0")
         }
     }
 }
