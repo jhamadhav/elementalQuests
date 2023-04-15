@@ -117,11 +117,13 @@ const calcScore = (points, desiredTime, timeDiff) => {
     return Math.floor(Math.max(10, score))
 }
 
-const updateGameDetail = (gameData, userdata, status) => {
+const updateGameDetail = (gameData, userdata, logic) => {
     let email = userdata["email"]
     let currentGame = userdata["currentGame"]
 
     userdata["games"][currentGame]["attempts"]++
+
+    let status = logic["status"]
 
     if (status == 0) {
         writeData(email, userdata)
@@ -132,11 +134,9 @@ const updateGameDetail = (gameData, userdata, status) => {
     userdata["games"][currentGame]["answer"] = gameData["answer"]
 
     userdata["games"][currentGame]["endTime"] = Date.now()
-    let timeDiff = userdata["games"][currentGame]["endTime"] - userdata["games"][currentGame]["startTime"]
 
-    let score = calcScore(gameData["points"], gameData["desiredFinishTime"], timeDiff)
-    score -= 5 * (userdata["games"][currentGame]["attempts"] - 1)
 
+    let score = logic["score"]
     userdata["games"][currentGame]["score"] = score
 
     userdata["totalScore"] += score

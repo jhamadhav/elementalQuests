@@ -14,6 +14,7 @@ app.use(cors())
 // custom modules
 const { checkAuth, hasRole } = require("./middleware/auth")
 const { readDoc, addUserToDB, readGameData, addGameToDB, updateGameDetail } = require("./firestoreDB")
+const { gameLogic } = require("./utils/gameSuccessLogic")
 
 app.get("/", checkAuth, (request, response) => {
     response.sendFile(__dirname + "../public/index.html");
@@ -56,7 +57,7 @@ app.post("/checkAnswer", checkAuth, async (req, res) => {
     let data = req.body
     // console.log(data);
 
-    let userAnswer = data["answer"].toLowerCase()
+    let userAnswer = data["answer"]
 
     let userDBdata = await readDoc(req.userData.email)
     let currentGame = userDBdata["currentGame"]
@@ -65,19 +66,18 @@ app.post("/checkAnswer", checkAuth, async (req, res) => {
     let gameData = await readGameData(currentGame)
     // console.log(gameData);
 
-    let gameAnswer = gameData["answer"].toLowerCase()
+    let logic = gameLogic[currentGame](gameData, userDBdata, userAnswer)
 
-    if (gameAnswer == userAnswer) {
-        // TODO: update db 
-        updateGameDetail(gameData, userDBdata, 1)
+    // console.log(logic);
+    if (logic["status"] == 1) {
+        updateGameDetail(gameData, userDBdata, logic)
 
-        // TODO: redirect user to game
         res.send(JSON.stringify({ status: 1, msg: "correct" }))
 
         return
     }
-    // TODO: update game attempt by one
-    updateGameDetail(gameData, userDBdata, 0)
+
+    updateGameDetail(gameData, userDBdata, logic)
     res.send(JSON.stringify({ status: 0, msg: "incorrect" }))
 
 })
