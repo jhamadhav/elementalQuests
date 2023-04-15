@@ -20,8 +20,8 @@
     <title>Quartz Quarry | Elemental Quests</title>
 
     <!-- izitoast -->
-    <!-- <link rel="stylesheet" type="text/css" href="./styles/iziToast.min.css">
-    <script src="./scripts/iziToast.min.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="./styles/iziToast.min.css">
+    <script src="./scripts/iziToast.min.js"></script>
 
     <!-- styles added -->
     <link rel="stylesheet" href="./../styles/game2.min.css">
@@ -68,11 +68,11 @@
                 currently. <br> <br>
                 The minerals are color coded as follows: <br>
                 <span class="text-bg red">Iron</span> -> Red <br>
-                <span class="text-bg gold">Copper</span> -> gold <br>
+                <span class="text-bg gold">Copper</span> -> yellow <br>
                 <!-- <span class="text-bg silver">Silver</span> -> silver <br> -->
 
                 <br><br>
-                You have to collect exactly: <br>
+                You have to collect less than or equal to: <br>
                 <span class="text-bg red">Iron</span> -> 100 <br>
                 <span class="text-bg gold">Copper</span> -> 50 <br>
                 <!-- <span class="text-bg silver">Silver</span> -> 20 <br> -->
@@ -88,23 +88,14 @@
                 <li>Your current collection amount won't be shown on the screen.</li>
                 <li>
                     Once you are sure that you have collected the necessary amount, hit <span
-                        class="text-bg red">Stop</span>
+                        class="text-bg">submit</span>
                 </li>
                 <li>
-                    Then <span class="text-bg brown">Submit</span>
+                    collecting more than given amount will result in incorrect attempt.
                 </li>
-                <li>If you want to restart hit <span class="text-bg">Reset</span></li>
+                <li>When Mining minerals might stick together, be ware !</li>
             </ol>
             </p>
-
-            <div class="ans-holder">
-                <div class="button-holder">
-                    <button id="ans-btn" class="sub-btn">
-                        Submit
-                        <div class="btn-loader"></div>
-                    </button>
-                </div>
-            </div>
 
             <div id="game-screen">
                 <!-- <div class="mineral red">
@@ -114,6 +105,14 @@
                 </div> -->
             </div>
 
+            <div class="ans-holder">
+                <div class="button-holder">
+                    <button id="ans-btn" class="sub-btn">
+                        Submit
+                        <div class="btn-loader"></div>
+                    </button>
+                </div>
+            </div>
 
 
         </div>

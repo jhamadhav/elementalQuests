@@ -5,29 +5,35 @@ let storyDiv = document.getElementById("story")
 // btn to close pop page
 let instructionsCloseBtn = document.getElementById("instructions-btn")
 instructionsCloseBtn.onclick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     closePopPage(instructionsDiv)
 }
 
 let storyCloseBtn = document.getElementById("story-btn")
 storyCloseBtn.onclick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     closePopPage(storyDiv)
 }
 
 // nav buttons to open pop pages
 document.getElementById("story-nav").onclick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     openPopPage(storyDiv)
 }
 
 document.getElementById("instructions-nav").onclick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     openPopPage(instructionsDiv)
 }
 
 
 const closePopPage = (div) => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     div.style.display = "none"
 }
 
 const openPopPage = (div) => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     div.style.display = "flex"
 }
 
@@ -68,4 +74,20 @@ const hideBtnLoader = () => {
 const hideLoader = () => {
     let loader = document.getElementsByClassName("loader-container")
     loader[0].style.display = "none"
+}
+
+const postData = async (url = "", data = {}) => {
+    const response = await fetch(url, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify(data)
+    });
+    return response.json();
 }

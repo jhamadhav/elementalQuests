@@ -1,17 +1,36 @@
-window.onload = () => {
-    hideLoader()
-    genMineral()
-}
-
 let colors = ["red", "gold"]
 let octetVal = [3, 1, 9, 7, 5, 7]
 let octi = 0
 let minSize = 80
-
 let data = {
     "red": 0,
     "gold": 0
 }
+
+window.onload = () => {
+    hideLoader()
+    genMineral()
+
+    document.getElementById("ans-btn").onclick = async () => {
+        showBtnLoader()
+
+        let reqData = {
+            answer: (data["red"] <= 100 && data["gold"] <= 50) ? "true" : "false"
+        }
+        // console.log(data);
+        let res = await postData("/checkAnswer", reqData)
+        // console.log(res);
+
+        if (res["status"] == 1) {
+            successMsg("accepted")
+            successMsg("redirecting to next game")
+            window.location = "/game"
+        } else {
+            errorMsg("incorrect")
+        }
+    }
+}
+
 const genMineral = () => {
     let gameScreen = document.getElementById("game-screen")
 
