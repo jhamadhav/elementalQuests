@@ -20,9 +20,6 @@ app.get("/", checkAuth, (request, response) => {
     response.sendFile(__dirname + "../public/index.html");
 });
 
-app.get("/hello", checkAuth, (req, res) => {
-    res.send(JSON.stringify({ data: "hello world !" }))
-})
 
 app.get("/game", checkAuth, async (req, res) => {
 
@@ -32,20 +29,23 @@ app.get("/game", checkAuth, async (req, res) => {
         addUserToDB(req.userData.email)
     }
 
+    // get current game
     let userDBdata = await readDoc(req.userData.email)
     let currentGame = userDBdata["currentGame"]
 
+    // if game has ended move to result area
     if (userDBdata["hasEnded"] == true) {
         res.sendFile('result.html', { root: './public' });
         return
     }
 
-    // if game data is not feed add that
+    // if game data is not added to user data, add that
     let len = Object.keys(userDBdata["games"]).length
     if (len != currentGame) {
         addGameToDB(userDBdata)
     }
 
+    // send user th appropriate page 
     res.sendFile(`game-${currentGame}.html`, { root: './public/gamePages' });
 })
 
@@ -62,46 +62,57 @@ app.post("/checkAnswer", checkAuth, async (req, res) => {
     let data = req.body
     // console.log(data);
 
+    // get user answer
     let userAnswer = data["answer"]
 
+    // get complete user data
     let userDBdata = await readDoc(req.userData.email)
     let currentGame = userDBdata["currentGame"]
     // console.log(currentGame)
 
+    // update current game answer
     userDBdata["games"][currentGame]["answer"] = userAnswer.toString()
 
+    // read gameData from DB for current game
     let gameData = await readGameData(currentGame)
     // console.log(gameData);
 
+    // calculate score and status from game logic
     let logic = gameLogic[currentGame](gameData, userDBdata, userAnswer)
 
     // console.log(logic);
     if (logic["status"] == 1) {
+
+        // if correct answer update score
         updateGameDetail(gameData, userDBdata, logic)
 
         res.send(JSON.stringify({ status: 1, msg: "correct" }))
-
         return
     }
 
+    // if incorrect answer increment attempt
     updateGameDetail(gameData, userDBdata, logic)
     res.send(JSON.stringify({ status: 0, msg: "incorrect" }))
 
 })
 app.post("/skipGame", checkAuth, async (req, res) => {
 
+    // get user data from db
     let userDBdata = await readDoc(req.userData.email)
     let currentGame = userDBdata["currentGame"]
     // console.log(currentGame)
 
+    //get current game data from db
     let gameData = await readGameData(currentGame)
     // console.log(gameData);
 
+    // since user skipped the level, pass the level with score 0
     let logic = {
         status: 1,
         score: 0
     }
 
+    // update game detial in user DB
     updateGameDetail(gameData, userDBdata, logic)
 
     res.send(JSON.stringify({ status: 1, msg: "correct" }))
@@ -110,31 +121,37 @@ app.post("/skipGame", checkAuth, async (req, res) => {
 
 app.post("/endGame", checkAuth, async (req, res) => {
 
+    // get user data from DB
     let userDBdata = await readDoc(req.userData.email)
     let currentGame = userDBdata["currentGame"]
     // console.log(currentGame)
 
+    // game has ended now update those data
     userDBdata["hasEnded"] = true
     userDBdata["endTime"] = Date.now()
 
+    // calculate total time and update DB
     let finishTime = userDBdata["endTime"] - userDBdata["startTime"]
     finishTime = Math.floor(finishTime / (60 * 1000))
 
     userDBdata["totalTime"] = finishTime
+
     let gameData = await readGameData(currentGame)
     // console.log(gameData);
 
+    // since game has been forcefully ended treat current game as skip
     let logic = {
         status: 1,
         score: 0
     }
 
+    // update user DB
     updateGameDetail(gameData, userDBdata, logic)
 
+    // add user data to global record
     updateGlobalScore(userDBdata)
 
     res.send(JSON.stringify({ status: 1, msg: "correct" }))
-
 })
 
 
