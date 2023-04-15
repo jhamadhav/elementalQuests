@@ -30,7 +30,8 @@ document.getElementById("instructions-nav").onclick = () => {
 document.getElementById("skip-btn").onclick = async () => {
     showBtnLoader()
     let ans = prompt("You won't gain any points in this game, type Y to skip ?")
-    console.log(ans);
+    // console.log(ans);
+
     ans = ans.trim()
     ans = ans.toLocaleLowerCase()
     if (ans != "y") {
@@ -56,7 +57,8 @@ document.getElementById("skip-btn").onclick = async () => {
 document.getElementById("end-test-btn").onclick = async () => {
     showBtnLoader()
     let ans = prompt("Are you sure want to end the test ? Type Y to End now.")
-    console.log(ans);
+    // console.log(ans);
+
     ans = ans.trim()
     ans = ans.toLocaleLowerCase()
     if (ans != "y") {
