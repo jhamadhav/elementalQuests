@@ -35,7 +35,7 @@ app.get("/game", checkAuth, async (req, res) => {
 
     // if game has ended move to result area
     if (userDBdata["hasEnded"] == true || currentGame > 5) {
-        res.sendFile('result.html', { root: './public' });
+        res.sendFile('result.html', { root: './public/gamePages' });
         return
     }
 

@@ -29,7 +29,7 @@ const checkAuth = (req, res, next) => {
             })
             .catch((error) => {
                 userUID = null
-                res.send(JSON.stringify({ data: "You are not logged in" }))
+                res.sendFile('403.html', { root: './public' });
             });
     } else {
         res.sendFile('403.html', { root: './public' });
