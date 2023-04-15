@@ -4,3 +4,10 @@
     // below line only on while under development
     display: none;
 }
+
+iframe {
+    width: 100%;
+    min-height: 90vh;
+    outline: none;
+    border: none;
+}
