@@ -31,6 +31,7 @@
     background: #efefef;
     border-radius: 6px;
     margin-bottom: 10px;
+
 }
 
 .ans-holder {
@@ -39,28 +40,44 @@
     }
 }
 
-$mineral-size: 50px;
+$mineral-size: 80px;
 
 .mineral {
     position: absolute;
+    // position: relative;
     width: $mineral-size;
     height: $mineral-size;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    color: #fff;
+    color: #262626;
     border-radius: 50%;
     cursor: pointer;
     transition-duration: 300ms;
     margin-left: 0;
     margin-top: 0;
+    user-select: none;
 
-    &:hover {
-        transform: scale(.95);
+    // &:hover {
+    //     transform: scale(.95);
+    // }
+
+    // &:active {
+    //     transform: scale(0);
+    // }
+}
+
+.dim-mineral {
+    animation: dim 110ms linear;
+}
+
+@keyframes dim {
+    0% {
+        transform: scale(1);
     }
 
-    &:active {
+    100% {
         transform: scale(0);
     }
 }
