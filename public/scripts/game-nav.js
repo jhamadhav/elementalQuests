@@ -3,8 +3,9 @@ let url = new URL(window.location);
 let val = url.searchParams.get("page")
 
 if (val == "deadend") {
+    // console.log("deadend");
     let retBtn = document.getElementById("return-to-game")
-    retBtn.display = "flex"
+    retBtn.style.display = "flex"
 
     let otherBtn = document.getElementsByClassName("ans-holder")
     for (let i = 0; i < otherBtn.length; ++i) {
@@ -22,7 +23,7 @@ if (val == "deadend") {
     try {
         document.getElementById("game-screen").style.display = "none"
     } catch (e) {
-        console.log("game window hidden for game 4");
+        console.log("game window not here");
     }
 }
 
