@@ -189,6 +189,14 @@ app.get("/dead-end-look-up", checkAuth, async (req, res) => {
 })
 
 
+app.get("/result", checkAuth, async (req, res) => {
+    let userData = await readDoc(req.userData.email)
+    let globalData = await readGameData("global")
+    let maxData = await readGameData("max-total")
+
+    res.send(JSON.stringify({ userData, globalData, maxData }))
+})
+
 app.get('*', (req, res) => {
     res.sendFile('404.html', { root: './public' });
 });

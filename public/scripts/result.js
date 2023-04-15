@@ -15,11 +15,29 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth()
 
-window.onload = () => {
+window.onload = async () => {
     hideLoader()
     document.getElementById("submit-logout").onclick = async () => {
         logoutUser()
     }
+
+    let res = await getData("/result")
+    console.log(res);
+}
+
+const getData = async (url = "") => {
+    const response = await fetch(url, {
+        method: "GET",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer"
+    });
+    return response.json();
 }
 
 const logoutUser = () => {
