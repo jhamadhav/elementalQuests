@@ -70,6 +70,19 @@ app.post("/checkAnswer", checkAuth, async (req, res) => {
     let currentGame = userDBdata["currentGame"]
     // console.log(currentGame)
 
+    // for last stage
+    if (currentGame == 5) {
+        // game has ended now update those data
+        userDBdata["hasEnded"] = true
+        userDBdata["endTime"] = Date.now()
+
+        // calculate total time and update DB
+        let finishTime = userDBdata["endTime"] - userDBdata["startTime"]
+        finishTime = Math.floor(finishTime / (60 * 1000))
+
+        userDBdata["totalTime"] = finishTime
+    }
+
     // update current game answer
     userDBdata["games"][currentGame]["answer"] = userAnswer.toString()
 
@@ -85,6 +98,12 @@ app.post("/checkAnswer", checkAuth, async (req, res) => {
 
         // if correct answer update score
         updateGameDetail(gameData, userDBdata, logic)
+
+        // for last stage
+        if (currentGame == 5) {
+            // add user data to global record
+            updateGlobalScore(userDBdata)
+        }
 
         res.send(JSON.stringify({ status: 1, msg: "correct" }))
         return

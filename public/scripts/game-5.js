@@ -10,6 +10,16 @@ let QnA = [
         "option2": "No",
     },
     {
+        "question": "Do you think Chemist is Drunk ?",
+        "option1": "Yes",
+        "option2": "No",
+    },
+    {
+        "question": "Is Mr. M. J. noble a responsible person ?",
+        "option1": "Yes",
+        "option2": "No",
+    },
+    {
         "question": `Due to the intoxicated nature of chemist, what would you like to do ? 
         <br> <br>
 
@@ -23,9 +33,12 @@ let QnA = [
     }
 ]
 let qIndex = -1
-let ans1, ans2, ques, res = [];
+let ans1, ans2, ques, res;
 window.onload = () => {
-
+    res = []
+    for (let i = 0; i < QnA.length; ++i) {
+        res.push("no")
+    }
     ques = document.getElementById("question")
     ans1 = document.getElementById("ans1")
     ans2 = document.getElementById("ans2")
@@ -52,8 +65,8 @@ window.onload = () => {
 const submitFunc = async (num) => {
     showBtnLoader()
     let temp = [...res, num]
-    // let res = await postData("/checkAnswer", { answer: temp })
-    console.log(temp);
+    let response = await postData("/checkAnswer", { answer: temp })
+    // console.log(temp);
     successMsg("accepted")
     successMsg("redirecting to next game")
     window.location = "/game"
