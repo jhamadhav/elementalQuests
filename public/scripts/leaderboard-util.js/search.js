@@ -9,9 +9,8 @@ inpBar.oninput = () => {
     inp = inp.toLowerCase()
 
     if (inp.length > 0) {
-
         for (let i = 0; i < leaderBoardData.length; i++) {
-            let obj = leaderBoardData[i].name.toLowerCase()
+            let obj = leaderBoardData[i][2].toLowerCase()
 
             if (obj.includes(inp)) {
                 tbody[i + 1].style.display = ""

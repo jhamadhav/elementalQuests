@@ -30,9 +30,9 @@ table {
     margin-top: 40px;
     color: $text;
     border-collapse: collapse;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin-bottom: 50px;
-    text-transform: capitalize;
+    text-transform: lowercase;
     transition: 300ms;
 
     tr {
@@ -40,6 +40,7 @@ table {
         height: 56px;
         border-top: 6px solid #efefef;
         border-bottom: 2px solid #efefef;
+        text-transform: capitalize;
 
         @include mobile {
             font-size: 14px;
@@ -47,7 +48,7 @@ table {
     }
 
     td {
-        text-transform: capitalize;
+        text-transform: lowercase;
     }
 
     .cell {

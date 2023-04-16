@@ -29,24 +29,18 @@
 <body>
     <!-- nav bar -->
     <nav>
-        <div class="burger" onclick="menuOpen()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <header>
-            <div class="logo">
+        <div class="nav-container">
+            <div id="appName">elemental<b>Quests</b> LeaderBoard</div>
 
+            <div id="links">
+                <button><a href="/">
+                        login
+                    </a></button>
+                <!-- <button id="instructions-nav">Instructions</button> -->
+                <!-- <button id="story-nav">Story</button> -->
+                <!-- <button id="logout">logout</button> -->
             </div>
-            <div class="site-name">
-                elemental<b>Quests</b>
-            </div>
-        </header>
-        <ul class="nav-links">
-            <a href="/">
-                <li>Login</li>
-            </a>
-        </ul>
+        </div>
     </nav>
 
     <br>
@@ -59,6 +53,7 @@
             <th class="cell">#rank</th>
             <th class="cell">name</th>
             <th class="cell">Score</th>
+            <th class="cell">Time</th>
         </tr>
         <tr class="row shadowLoad">
             <td class="cell ">
@@ -70,14 +65,6 @@
             <th class="cell ">
                 <div class="shadowCell"></div>
             </th>
-        </tr>
-        <tr class="row shadowLoad">
-            <td class="cell ">
-                <div class="shadowCell"></div>
-            </td>
-            <td class="cell ">
-                <div class="shadowCell"></div>
-            </td>
             <th class="cell ">
                 <div class="shadowCell"></div>
             </th>
@@ -89,9 +76,13 @@
             <td class="cell ">
                 <div class="shadowCell"></div>
             </td>
-            <th class="cell ">
+            <td class="cell ">
                 <div class="shadowCell"></div>
-            </th>
+            </td>
+            <td class="cell ">
+                <div class="shadowCell"></div>
+            </td>
+
         </tr>
         <tr class="row shadowLoad">
             <td class="cell ">
@@ -100,18 +91,67 @@
             <td class="cell ">
                 <div class="shadowCell"></div>
             </td>
-            <th class="cell ">
+            <td class="cell ">
                 <div class="shadowCell"></div>
-            </th>
+            </td>
+            <td class="cell ">
+                <div class="shadowCell"></div>
+            </td>
+
         </tr>
+        <tr class="row shadowLoad">
+            <td class="cell ">
+                <div class="shadowCell"></div>
+            </td>
+            <td class="cell ">
+                <div class="shadowCell"></div>
+            </td>
+            <td class="cell ">
+                <div class="shadowCell"></div>
+            </td>
+            <td class="cell ">
+                <div class="shadowCell"></div>
+            </td>
+
+        </tr>
+        <tr class="row shadowLoad">
+            <td class="cell ">
+                <div class="shadowCell"></div>
+            </td>
+            <td class="cell ">
+                <div class="shadowCell"></div>
+            </td>
+            <td class="cell ">
+                <div class="shadowCell"></div>
+            </td>
+            <td class="cell ">
+                <div class="shadowCell"></div>
+            </td>
+
+        </tr>
+        <tr class="row shadowLoad">
+            <td class="cell ">
+                <div class="shadowCell"></div>
+            </td>
+            <td class="cell ">
+                <div class="shadowCell"></div>
+            </td>
+            <td class="cell ">
+                <div class="shadowCell"></div>
+            </td>
+            <td class="cell ">
+                <div class="shadowCell"></div>
+            </td>
+
+        </tr>
+
 
     </table>
 
 
     <!-- scripts -->
-    <script src="./../scripts/leaderboard-util.js/navBar.js"></script>
-    <script src="./../scripts/leaderboard-util.js/leaderboard.js"></script>
     <script src="./../scripts/leaderboard-util.js/search.js"></script>
+    <script src="./../scripts/leaderboard-util.js/leaderboard.js"></script>
 </body>
 
 </html>

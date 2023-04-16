@@ -205,7 +205,7 @@ app.get("/result", checkAuth, async (req, res) => {
 })
 
 // TODO: add auth to this route
-app.post("/leaderboard", async (req, res) => {
+app.post("/leaderboard", checkAuth, async (req, res) => {
     let allUserData = await readCollection()
     // for each user extract their email, totalScore and totalTime
     let data = []
@@ -213,7 +213,7 @@ app.post("/leaderboard", async (req, res) => {
         if (allUserData[i]["hasEnded"] == false) continue
         // console.log(allUserData[i]);
 
-        let email = allUserData[i]["email"]
+        let email = allUserData[i]["email"].split("@")[0]
         let totalScore = allUserData[i]["totalScore"]
         let totalTime = allUserData[i]["totalTime"]
         data.push([totalScore, totalTime, email])
@@ -224,7 +224,7 @@ app.post("/leaderboard", async (req, res) => {
     res.send(JSON.stringify({ data }))
 })
 
-app.get("/leaderboard", async (req, res) => {
+app.get("/leaderboard", checkAuth, async (req, res) => {
 
     res.sendFile("leaderboard.html", { root: './public/gamePages' });
 })
