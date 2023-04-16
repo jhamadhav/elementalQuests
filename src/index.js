@@ -85,7 +85,7 @@ app.post("/checkAnswer", checkAuth, async (req, res) => {
 
         // calculate total time and update DB
         let finishTime = userDBdata["endTime"] - userDBdata["startTime"]
-        finishTime = Math.floor(finishTime / (60 * 1000))
+        finishTime = Math.ceil(finishTime / (60 * 1000))
 
         userDBdata["totalTime"] = finishTime
     }
@@ -158,7 +158,7 @@ app.post("/endGame", checkAuth, async (req, res) => {
 
     // calculate total time and update DB
     let finishTime = userDBdata["endTime"] - userDBdata["startTime"]
-    finishTime = Math.floor(finishTime / (60 * 1000))
+    finishTime = Math.ceil(finishTime / (60 * 1000))
 
     userDBdata["totalTime"] = finishTime
 

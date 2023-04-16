@@ -14,7 +14,7 @@ const gameOneTwo = (gameData, userData, userAnswer) => {
     let points = gameData["points"], desiredTime = gameData["desiredFinishTime"]
 
     // millisecond to minute
-    timeDiff = Math.floor(timeDiff / (60 * 1000))
+    timeDiff = Math.ceil(timeDiff / (60 * 1000))
 
     diff = desiredTime - Math.abs(timeDiff)
     diff = Math.min(diff, desiredTime)
@@ -37,7 +37,7 @@ const gameThree = (gameData, userData) => {
     let points = gameData["points"], desiredTime = gameData["desiredFinishTime"]
 
     // millisecond to minute
-    timeDiff = Math.floor(timeDiff / (60 * 1000))
+    timeDiff = Math.ceil(timeDiff / (60 * 1000))
 
     diff = desiredTime - Math.abs(timeDiff)
     diff = Math.min(diff, desiredTime)
@@ -80,28 +80,48 @@ const gameFour = (gameData, userData, userAnswer) => {
 
 const gameFive = (gameData, userData, userAnswer) => {
 
+    /* supposed answer
+        0 yes
+        1 yes
+        2 yes
+        3 conflict with 7
+        4 conflict with 6
+        5 no
+        6 conflict with 4
+        7 conflict with 3
+    */
+
+    let skip = [3, 7, 4, 6]
     let score = gameData["points"]
     // console.log(score);
 
     let gAns = gameData["answer"]
     for (let i = 0; i < gAns.length; ++i) {
+        if (skip.indexOf(i) != -1) continue
         if (userAnswer[i].toLowerCase() != gAns[i].toLowerCase()) {
             score -= 10
         }
     }
+
+    let tempPoints = 0
+    tempPoints += (userAnswer[3].toLowerCase() == userAnswer[7].toLowerCase()) ? 1 : -2
+    tempPoints += (userAnswer[3].toLowerCase() == userAnswer[7].toLowerCase()) ? 1 : -2
+
+    score += tempPoints * 10
+
     // console.log(score);
     let currentGame = userData["currentGame"]
 
     let timeDiff = Date.now() - userData["games"][currentGame]["startTime"]
 
     // millisecond to minute
-    timeDiff = Math.floor(timeDiff / (60 * 1000))
+    timeDiff = Math.ceil(timeDiff / (60 * 1000))
 
     let desiredTime = gameData["desiredFinishTime"]
     let diff = desiredTime - timeDiff
     // console.log(diff);
 
-    score += 2 * diff
+    score += 10 * diff
     // console.log(score);
 
 

@@ -91,7 +91,7 @@ const submitFunc = async (num) => {
     // console.log(temp);
     successMsg("accepted")
     successMsg("redirecting to next game")
-    // window.location = "/game"
+    window.location = "/game"
 }
 const nextQ = () => {
     qIndex++
