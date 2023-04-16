@@ -34,6 +34,8 @@ window.onload = async () => {
     // console.log(userList);
 
     for (let i = 0; i < userList.length; ++i) {
+        if (userList[i]["hasEnded"] == false) continue
+
         userDrop.innerHTML += `
         <option value="${i}">${userList[i]["email"]}</option>
         `

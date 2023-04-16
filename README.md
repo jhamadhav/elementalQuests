@@ -133,6 +133,8 @@ Some characters are mapped to another i.e. encrypted to decrypted. Identify the 
 This stage aims to establish the story and characteristics of the agents involved.
 This is base test to assess problem solving and feed user details that will come in handy in later stages that if ignored will lead to possible dead ends.
 
+<br>
+
 # Stage 2: Odd Drawer
 
 ## Soft skills tested: 2
@@ -180,6 +182,31 @@ Arrange the test tubes filled with different chemical in the order mentioned in 
 ## Motive
 
 This stage is design to assess memory and deduction skills of the user.
+
+<br>
+
+# Stage 3: Atomic Shell
+
+## Soft skills tested: 2
+
+1. Patience
+2. Focus
+
+## Dead end: 1
+
+
+
+## Clues: 1
+
+1. Atomic shell refers the stage
+
+## Story
+
+## Puzzle
+
+## Solution
+
+## Motive
 
 # Tech stack:
 
