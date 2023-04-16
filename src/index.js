@@ -58,9 +58,8 @@ app.get("/game", checkAuth, async (req, res) => {
 
 // TODO: add check auth middleware
 // checkAuth
-app.get("/admin", async (req, res) => {
-    // let cond = hasRole(req, "admin")
-    let cond = true
+app.get("/admin", checkAuth, async (req, res) => {
+    let cond = hasRole(req, "admin")
     if (cond) {
         res.sendFile('admin.html', { root: './public/gamePages' });
         return
@@ -69,9 +68,8 @@ app.get("/admin", async (req, res) => {
     res.sendFile('403.html', { root: './public' });
 })
 
-app.post("/admin", async (req, res) => {
-    // let cond = hasRole(req, "admin")
-    let cond = true
+app.post("/admin", checkAuth, async (req, res) => {
+    let cond = hasRole(req, "admin")
     if (cond) {
         let allUserData = await readCollection()
         let globalData = await readGameData("global")

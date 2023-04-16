@@ -16,13 +16,13 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth()
 
 let { min, max, round, floor } = Math
-
+let allData = {}
 window.onload = async () => {
-    hideLoader()
 
-    // setTimeout(() => {
-    //     hideLoader()
-    // }, 2000);
+    allData = await postData("/admin")
+    // console.log(allData);
+
+    hideLoader()
 
     displayBellCurve("totalScore", allData["globalData"]["finalScore"])
 
@@ -62,12 +62,6 @@ window.onload = async () => {
         displayBellCurve(dataType, allData["globalData"]["skills"][dataType])
 
     }
-
-    // let res = await getData("/result")
-    let res = allData
-    // console.log(res);
-
-    // displayResult(res)
 }
 
 const displayBellCurve = (xTitle, inpData) => {
@@ -357,9 +351,9 @@ const displayResult = (data) => {
 
 }
 
-const getData = async (url = "") => {
+const postData = async (url = "") => {
     const response = await fetch(url, {
-        method: "GET",
+        method: "POST",
         mode: "cors",
         cache: "no-cache",
         credentials: "same-origin",
@@ -367,7 +361,8 @@ const getData = async (url = "") => {
             "Content-Type": "application/json",
         },
         redirect: "follow",
-        referrerPolicy: "no-referrer"
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify({})
     });
     return response.json();
 }
