@@ -32,7 +32,7 @@ Listed below are all the feature included in the project
 - [x] 2 dead ends
     1. First on stage 4: Quartz Quary
     2. Second on stage 5: Mindful Molecules
-- [x] 10 clues
+- [x] 7 clues
 - [x] User leader board
 - [x] Admin Panel
 - [x] User analytics after game ends
@@ -58,13 +58,20 @@ Only logged in users can:
 - [x] Access result analysis
 - [x] Only admin can access Admin Panel
 
+# Screen Shots
+
+<p align="center">
+    <img src="./public/assets/readme/banner.jpg" alt="" width=700>
+</p>
+
+
 # Detailed view of the game
 
 The project has been developed as a way to test soft skills, thus it is only one time play for every user.
 
 ## Completion of the game
 
-- The game meant to test the soft skills, thus keeping user stuck on level for ever with no form of rescue is futile.
+- The game is meant to test the soft skills, thus keeping user stuck on level forever with no form of rescue is futile.
 
 - To avoid this *Special actions:* **skip** and **End Game**, are available at each stage so user can skip the stage by discarding the points or end the game if required.
 
@@ -149,6 +156,8 @@ This is base test to assess problem solving and feed user details that will come
 In the note presented in this stage story, two clues are hidden that are used to set premise of chemist being a recovering alcoholic.
 Since existence of this note points to this being a recurring event.
 
+**Note by chemist:**
+
 1. No experimenting with new formulas tonight!
 2. Don't listen to what you've consumed, you can recover 
 
@@ -176,7 +185,7 @@ Arrange the test tubes filled with different chemical in the order mentioned in 
 
 <details> 
   <summary>Beware solution below, click to see? </summary>
-  HNO3,HCL,HBR,H2S,H2O,HI,HF,NAOH,H2SO4 
+  HNO3,HCl,HBr,H2S,H2O,HI,HF,NaOH,H2SO4 
 </details>
 
 ## Motive
@@ -192,21 +201,135 @@ This stage is design to assess memory and deduction skills of the user.
 1. Patience
 2. Focus
 
-## Dead end: 1
-
-
+## Dead end: 0
 
 ## Clues: 1
 
-1. Atomic shell refers the stage
+1. The story mentions a satisfactory score, never a exact number.
 
 ## Story
 
+```
+While intoxicated, the chemist was frenziedly talking about his favorite game, Atomic Shell. 
+He insists that you beat his current high score before he will focus on the task at hand. 
+Play the game and achieve a satisfactory score to regain his attention. 
+```
+
 ## Puzzle
+
+Comprehend the story accurately and make decision about at what score should you leave.
 
 ## Solution
 
+Submitting whenever is fine, early is better.
+
 ## Motive
+The story mentions a satisfactory score, never a exact number, thus submitting at any point is okay. 
+This can only be comprehended if user if focused.
+
+
+# Stage 4: Quartz Quary
+
+## Soft skills tested: 4
+
+1. Memory
+2. Stress Management
+3. Focus
+4. Patience
+
+## Dead end: 1
+
+- The value that appears on the face of minerals follows the octet sequence seen in game 1.
+- If user is stuck here, they will have to move back to round one info
+- This action will cost time for the user and thus affect points negatively.
+
+## Clues: 0
+
+## Story
+
+```
+Having finally beaten the chemist's high score, you successfully persuaded him to refocus on the task at hand. 
+The next step requires combining specific minerals to enhance the purity and quality of the resulting product. 
+```
+
+## Puzzle
+
+1. Every appearing mineral has amount/count written on it's face that is the amount of mineral you will gain.
+2. Your current collection amount won't be shown on the screen.
+3. Once you are sure that you have collected the necessary amount, hit
+Collecting more than given amount will result in incorrect attempt.
+4. When Mining, minerals might stick together, beware !
+
+## Solution
+
+Focus on collecting one mineral first then move to next
+
+## Motive
+
+The game is designed to put user under stress and then check their focus and short term memory.
+
+<br>
+
+# Stage 5: Mindful Molecules
+
+## Soft skills tested: 2
+
+1. Eye for Detail
+2. Emotional Intelligence
+
+## Dead end: 1
+
+- All questions asked here are related to note found in game two.
+- If user is stuck here, they will have to move back to round two info
+- This action will cost time for the user and thus affect points negatively.
+
+## Clues: 1
+
+- As the name suggests "Mindful Molecules", use should be mindful of what they answer
+
+## Story
+
+```
+Now that the door is unlocked, chemicals are re-arranged, and minerals are collected, 
+it's time to finish what was started.
+
+Facing a dilemma, you need to pause and reflect. 
+```
+
+## Puzzle
+
+Answer the Questions to best of your knowledge about chemist.
+
+## Solution
+
+- Q1: yes
+- Q2: yes
+- Q3: yes
+- Q4: should be same as 8th answer
+- Q5: should be same as 7th answer
+- Q6: no
+- Q7: should be same as 5th answer
+- Q8: should be same as 4th answer
+
+## Motive
+
+Q1 to Q3 are there to check users attention, others are to assess Emotional Intelligence.
+
+There are 3 methods to check Emotional Intelligence: "self-reporting, other-reporting, and ability testing".
+
+While conducting this game, **Self reporting** is the most suitable method to do so.
+
+Initially we ask some obvious Questions that user should be able to answer easily if they paid attention to story.
+
+This sets up the pace for our crucial questions that are in pair (4 and 8) and (5 and 7).
+
+(4 and 8) asks the Question on whether user trusts chemists decisions. Whether they do or not is up to them but a difference in answer suggests users incapacity to understand their emotion about the chemist.
+
+(5 and 7) asks the Question on sincerity of chemist, 5th Qs asks if going for celebration was a good idea, if user agrees on this then their view on chemist's sincerity should not be conflicted for Q7.
+
+With these Qs we attempting to assess Emotional Intelligence of the user.
+
+<br>
 
 # Tech stack:
 
@@ -260,8 +383,9 @@ Also, be sure to have `git` available in your PATH, `npm` might need it (You can
 
 This project uses Firebase technology, to configure this project for your self create project on firebase and replace credentials at required locations
 
+<br>
 
 # Credits
-izitoast: https://izitoast.marcelodolza.com/
-
-moving background: https://codepen.io/kootoopas/pen/kGPoaB
+- izitoast: https://izitoast.marcelodolza.com/
+- Charts: https://www.highcharts.com
+- Story Images: From [Rick and Morty](https://en.wikipedia.org/wiki/Rick_and_Morty)
