@@ -43,6 +43,8 @@ Listed below are all the feature included in the project
 - [x] **Skip** to skip a stage by discarding any points rewarded for that level
 - [x] **End game** to end the game if done
 
+- [x] Automated test with selenium to test feature functionality
+
 ## Authentication
 
 - [x] User Sign up
