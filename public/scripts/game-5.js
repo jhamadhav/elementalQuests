@@ -1,21 +1,36 @@
 let QnA = [
     {
-        "question": "Do you think Chemist is Drunk ?",
+        "question": "Do you think Mr. Noble is Drunk ?",
         "option1": "Yes",
         "option2": "No",
     },
     {
-        "question": "Is Mr. M. J. noble a responsible person ?",
+        "question": "Do you think he is an alcoholic ?",
         "option1": "Yes",
         "option2": "No",
     },
     {
-        "question": "Do you think Chemist is Drunk ?",
+        "question": "Do you believe he is recovering alcoholic ?",
         "option1": "Yes",
         "option2": "No",
     },
     {
-        "question": "Is Mr. M. J. noble a responsible person ?",
+        "question": "Do you believe in his judgement ?",
+        "option1": "Yes",
+        "option2": "No",
+    },
+    {
+        "question": "Was it a good idea to go for celebrations,?",
+        "option1": "Yes",
+        "option2": "No",
+    },
+    {
+        "question": "Can we determine, if chemist is punctual ?",
+        "option1": "Yes",
+        "option2": "No",
+    },
+    {
+        "question": "Is Mr. Noble sincere to his work ?",
         "option1": "Yes",
         "option2": "No",
     },
@@ -36,9 +51,9 @@ let qIndex = -1
 let ans1, ans2, ques, res;
 window.onload = () => {
     res = []
-    for (let i = 0; i < QnA.length; ++i) {
-        res.push("no")
-    }
+    // for (let i = 0; i < QnA.length; ++i) {
+    //     res.push("no")
+    // }
     ques = document.getElementById("question")
     ans1 = document.getElementById("ans1")
     ans2 = document.getElementById("ans2")
@@ -56,20 +71,27 @@ window.onload = () => {
     }
 
     document.getElementById("ans-btn").onclick = async () => {
-        await submitFunc("1")
+        await submitFunc("yes")
     }
     document.getElementById("end-test-btn-1").onclick = async () => {
-        await submitFunc("0")
+        await submitFunc("no")
     }
 }
 const submitFunc = async (num) => {
     showBtnLoader()
+
     let temp = [...res, num]
+    console.log(temp);
+
+    if (temp.length < 8) {
+        errorMsg("Cannot submit as of now, answer all Questions")
+        return
+    }
     let response = await postData("/checkAnswer", { answer: temp })
     // console.log(temp);
     successMsg("accepted")
     successMsg("redirecting to next game")
-    window.location = "/game"
+    // window.location = "/game"
 }
 const nextQ = () => {
     qIndex++
