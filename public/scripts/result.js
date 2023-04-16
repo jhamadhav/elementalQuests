@@ -206,6 +206,62 @@ const displayResult = (data) => {
         }]
     });
 
+    let scoreData = []
+    let attemptData = []
+    for (let i = 0; i < games.length; ++i) {
+        scoreData.push(data["userData"]["games"][games[i]]["score"])
+        attemptData.push(data["userData"]["games"][games[i]]["attempts"])
+    }
+
+    // add data for each stage
+    Highcharts.chart('each-stage', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Stage Stat'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: games,
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Score'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Score',
+            data: scoreData
+
+        }, {
+            name: 'Time',
+            data: timeData
+
+        }, {
+            name: 'attempts',
+            data: attemptData
+        }]
+    });
+
 }
 
 const getData = async (url = "") => {
