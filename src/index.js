@@ -56,13 +56,33 @@ app.get("/game", checkAuth, async (req, res) => {
     res.sendFile(`game-${currentGame}.html`, { root: './public/gamePages' });
 })
 
-app.get("/admin", checkAuth, (req, res) => {
-    let cond = hasRole(req, "admin")
+// TODO: add check auth middleware
+// checkAuth
+app.get("/admin", async (req, res) => {
+    // let cond = hasRole(req, "admin")
+    let cond = true
     if (cond) {
-        res.send(JSON.stringify({ data: "hello admin !" }))
+        res.sendFile('admin.html', { root: './public/gamePages' });
         return
     }
+
     res.sendFile('403.html', { root: './public' });
+})
+
+app.post("/admin", async (req, res) => {
+    // let cond = hasRole(req, "admin")
+    let cond = true
+    if (cond) {
+        let allUserData = await readCollection()
+        let globalData = await readGameData("global")
+        let maxData = await readGameData("max-total")
+
+        res.send(JSON.stringify({ allUserData, globalData, maxData }))
+        return
+    }
+
+    res.status(403)
+    res.send(JSON.stringify({ error: 403 }))
 })
 
 app.post("/checkAnswer", checkAuth, async (req, res) => {
@@ -121,6 +141,7 @@ app.post("/checkAnswer", checkAuth, async (req, res) => {
     res.send(JSON.stringify({ status: 0, msg: "incorrect" }))
 
 })
+
 app.post("/skipGame", checkAuth, async (req, res) => {
 
     // get user data from db
@@ -195,7 +216,6 @@ app.get("/dead-end-look-up", checkAuth, async (req, res) => {
 
 })
 
-
 app.get("/result", checkAuth, async (req, res) => {
     let userData = await readDoc(req.userData.email)
     let globalData = await readGameData("global")
@@ -204,7 +224,6 @@ app.get("/result", checkAuth, async (req, res) => {
     res.send(JSON.stringify({ userData, globalData, maxData }))
 })
 
-// TODO: add auth to this route
 app.post("/leaderboard", checkAuth, async (req, res) => {
     let allUserData = await readCollection()
     // for each user extract their email, totalScore and totalTime
@@ -228,11 +247,6 @@ app.get("/leaderboard", checkAuth, async (req, res) => {
 
     res.sendFile("leaderboard.html", { root: './public/gamePages' });
 })
-
-
-
-
-
 
 app.get('*', (req, res) => {
     res.sendFile('404.html', { root: './public' });

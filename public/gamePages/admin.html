@@ -20,8 +20,8 @@
     <title> Admin Panel | Elemental Quests</title>
 
     <!-- izitoast -->
-    <link rel="stylesheet" type="text/css" href="./styles/iziToast.min.css">
-    <script src="./scripts/iziToast.min.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="./styles/iziToast.min.css">
+    <script src="./scripts/iziToast.min.js"></script> -->
 
 
     <!-- high charts scripts -->
@@ -31,12 +31,15 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/modules/histogram-bellcurve.js"></script>
+
 
     <!-- styles added -->
     <link rel="stylesheet" href="./../styles/result.min.css">
+    <link rel="stylesheet" href="./../styles/admin.min.css">
 
     <!-- scripts -->
-    <script src="./../scripts/result.js" type="module"></script>
+    <script src="./../scripts/admin.js" type="module"></script>
 
 </head>
 
@@ -72,6 +75,50 @@
 
             <div class="game-header">Welcome Admin !</div>
 
+
+            <div class="game-header">Bell Curve: </div>
+
+            <div class="dropdown-container">
+                <div class="dropdown-wrapper">
+                    <!-- <label for="dropdown">Choose category:</label> -->
+                    <select id="bell-dropdown" name="dropdown" autocomplete="off">
+                        <option value="totalScore" selected>Total Score</option>
+                        <option value="totalTime">Total Time</option>
+                        <option value="critical-thinking">critical thinking</option>
+                        <option value="memory">memory</option>
+                        <option value="patience">patience</option>
+                        <option value="focus">focus</option>
+                        <option value="stress-management">stress management</option>
+                        <option value="totalTime">emotional intelligence</option>
+                        <option value="problem-solving">problem solving</option>
+                        <option value="eye-for-detail">eye for detail</option>
+                    </select>
+                </div>
+
+                <button id="bell-curve-btn">
+                    Display
+                </button>
+            </div>
+
+            <div id="bell-curve" class="highcharts"></div>
+
+
+            <div class="game-header">Users and their data !</div>
+
+            <div class="dropdown-container">
+                <div class="dropdown-wrapper">
+                    <!-- <label for="dropdown">Choose category:</label> -->
+                    <select id="user-dropdown" name="dropdown" autocomplete="off">
+                        <option value="0" selected>jhamadhav28@gmail.com</option>
+                    </select>
+                </div>
+
+                <button id="user-display-btn">
+                    Display
+                </button>
+            </div>
+
+
             <div id="total-score">
 
             </div>
@@ -91,10 +138,8 @@
 
             <div class="game-header">Performance in each game</div>
             <div id="each-stage" class="highcharts"></div>
+
         </div>
-
-
-    </div>
     </div>
 
 </body>
