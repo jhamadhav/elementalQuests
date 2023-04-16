@@ -39,6 +39,9 @@ Listed below are all the feature included in the project
 - [x] Overall and each user's analyticals in admin panel
 - [x] 404 page (route not present error)
 - [x] 403 page (insufficient authorization)
+- [x] Ability to review previous stage information if stuck on a certain stage
+- [x] **Skip** to skip a stage by discarding any points rewarded for that level
+- [x] **End game** to end the game if done
 
 ## Authentication
 
@@ -89,21 +92,94 @@ The project has been developed as a way to test soft skills, thus it is only one
 
 # Stage 1: Octet Lock
 
-## Soft skills tested
+## Soft skills tested: 3
 
-## Dead end
+1. Problem Solving
+2. Critical Thinking
+3. Eye For Detail
 
-## Clues
+## Dead end: 0
+
+## Clues: 3
+
+The mapping follows the pattern **2, 0, 8, 6,4, 6** and repeats. That is the unit digit of atomic number of noble gases.
+
+1. Name of the stage is "Octet Lock", octet as in the one in chemistry.
+2. Chemists name is Mr. M. J. **Noble**, Noble for noble gases
+3. Initial pattern is hidden in the story, as numbers that appear, "two product" -> 2, "midnight" is when clock hits -> 0, "minute hand at 8" ->8
 
 ## Story
+```
+You are an aspiring chemist and the faithful assistant of M.J. Noble, a famous chemist and laboratory owner in the city. On a weekend, both of you were manufacturing two products, but when the clock struck midnight, Mr. Noble suggested going out for drinks, appreciating your hard work. He assured you of coming back and completing his part of the work in an hour.
+
+At the bar, after having dinner and few rounds of drinks, Mr. Noble was not sober anymore. He looked at his watch and realized that the minutes hand was about to hit 8. Hurriedly, he rushed you back to the laboratory, where you found the door locked with puzzle that he himself had put in place to prevent him from touching the chemicals while being drunk.
+
+To unlock the door and complete the ongoing processes, you need to solve the puzzle first ! 
+```
 
 ## Puzzle
 
+Some characters are mapped to another i.e. encrypted to decrypted. Identify the pattern between these mapping and form you own key for the given string.
+
 ## Solution
+
+<details> 
+  <summary>Beware solution below, click to see? </summary>
+  Litmus 
+</details>
 
 ## Motive
 
+This stage aims to establish the story and characteristics of the agents involved.
+This is base test to assess problem solving and feed user details that will come in handy in later stages that if ignored will lead to possible dead ends.
 
+# Stage 2: Odd Drawer
+
+## Soft skills tested: 2
+
+1. Problem Solving
+2. Memory
+
+## Dead end: 0
+
+## Clues: 2
+
+In the note presented in this stage story, two clues are hidden that are used to set premise of chemist being a recovering alcoholic.
+Since existence of this note points to this being a recurring event.
+
+1. No experimenting with new formulas tonight!
+2. Don't listen to what you've consumed, you can recover 
+
+## Story
+```
+After unlocking the door, Mr. Noble hurried towards a drawer and disrupted some test tubes containing chemicals. Maintaining the order of chemicals is critical to complete the process.
+To prevent your competitors from using the formula, you did not write down the order, but you have a set of instructions saved with you to help you achieve the correct order.
+
+In midst of this chaos, you found a note that Mr. Noble wrote for his himself:
+
+1. Don't touch the chemicals, especially the green one!
+2. Remember, the order matters! Don't mess it up
+3. No experimenting with new formulas tonight!
+4. Don't listen to what you've consumed, you can recover
+5. Don't confuse the red and blue beakers, they look similar
+
+Follow the given instructions and figure out the correct order. 
+```
+
+## Puzzle
+
+Arrange the test tubes filled with different chemical in the order mentioned in the game section.
+
+## Solution
+
+<details> 
+  <summary>Beware solution below, click to see? </summary>
+  HNO3,HCL,HBR,H2S,H2O,HI,HF,NAOH,H2SO4 
+</details>
+
+## Motive
+
+This stage is design to assess memory and deduction skills of the user.
 
 # Tech stack:
 
