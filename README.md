@@ -1,10 +1,12 @@
 # Elemental Quests
 
 <p align="center">
-    <img src="./public/assets/readme/banner.jpg" alt="" width=500>
+    <img src="./public/assets/readme/banner.jpg" alt="" width=700>
+<br><br>
+    An innovative experience that blends the thrill of a treasure hunt with the power of storytelling and puzzles to provide a one-of-a-kind soft skills assessment experience.
 </p>
 
-An innovative experience that blends the thrill of a treasure hunt with the power of storytelling and puzzles to provide a one-of-a-kind soft skills assessment experience.
+
 
 # Features
 
