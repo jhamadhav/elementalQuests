@@ -61,7 +61,43 @@ Only logged in users can:
 # Screen Shots
 
 <p align="center">
-    <img src="./public/assets/readme/banner.jpg" alt="" width=700>
+        <img src="./public/assets/readme/login.jpg" alt="" width=700>
+        <br>
+        Login page
+        <br><br>
+        <img src="./public/assets/readme/signup.jpg" alt="" width=700>
+        <br>
+        signup page
+        <br><br>
+        <img src="./public/assets/readme/reset-password.jpg" alt="" width=700>
+        <br>
+        Reset Password
+        <br><br>
+        <img src="./public/assets/readme/admin-login.jpg" alt="" width=700>
+        <br>
+        Admin Login Page
+        <br><br>
+        <img src="./public/assets/readme/result.jpg" alt="" width=700>
+        <br>
+        Result page
+        <br><br>
+        <img src="./public/assets/readme/result-2.jpg" alt="" width=700>
+        <br>
+        Result page 2
+        <br>
+        <br>
+        <img src="./public/assets/readme/admin.jpg" alt="" width=700>
+        <br>
+        Admin page
+        <br><br>
+        <img src="./public/assets/readme/admin-2.jpg" alt="" width=700>
+        <br>
+        Admin page 2
+        <br><br>
+        <img src="./public/assets/readme/leader-board.jpg" alt="" width=700>
+        <br>
+        leader-board
+        <br><br>
 </p>
 
 
