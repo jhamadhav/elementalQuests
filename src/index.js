@@ -13,7 +13,7 @@ app.use(cors())
 
 // custom modules
 const { checkAuth, hasRole } = require("./middleware/auth")
-const { readDoc, addUserToDB, readGameData, addGameToDB, updateGameDetail, updateGlobalScore } = require("./firestoreDB")
+const { readDoc, addUserToDB, readGameData, addGameToDB, updateGameDetail, updateGlobalScore, readCollection } = require("./firestoreDB")
 const { gameLogic } = require("./utils/gameSuccessLogic")
 
 app.get("/", checkAuth, (request, response) => {
@@ -203,6 +203,36 @@ app.get("/result", checkAuth, async (req, res) => {
 
     res.send(JSON.stringify({ userData, globalData, maxData }))
 })
+
+// TODO: add auth to this route
+app.post("/leaderboard", async (req, res) => {
+    let allUserData = await readCollection()
+    // for each user extract their email, totalScore and totalTime
+    let data = []
+    for (let i = 0; i < allUserData.length; ++i) {
+        if (allUserData[i]["hasEnded"] == false) continue
+        // console.log(allUserData[i]);
+
+        let email = allUserData[i]["email"]
+        let totalScore = allUserData[i]["totalScore"]
+        let totalTime = allUserData[i]["totalTime"]
+        data.push([totalScore, totalTime, email])
+    }
+    // console.log(data);
+    // return data
+
+    res.send(JSON.stringify({ data }))
+})
+
+app.get("/leaderboard", async (req, res) => {
+
+    res.sendFile("leaderboard.html", { root: './public/gamePages' });
+})
+
+
+
+
+
 
 app.get('*', (req, res) => {
     res.sendFile('404.html', { root: './public' });
