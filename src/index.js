@@ -25,8 +25,10 @@ app.get("/game", checkAuth, async (req, res) => {
 
     // check if user exists in db else add
     let isUserInDB = await readDoc(req.userData.email)
+    let newUserFlag = false
     if (isUserInDB == undefined) {
         addUserToDB(req.userData.email)
+        newUserFlag = true
     }
 
     // get current game
@@ -41,7 +43,7 @@ app.get("/game", checkAuth, async (req, res) => {
     }
 
     // if game has ended move to result area
-    if (userDBdata["hasEnded"] == true || currentGame > 5) {
+    if ((newUserFlag == false) && (userDBdata["hasEnded"] == true || currentGame > 5)) {
         res.sendFile('result.html', { root: './public/gamePages' });
         return
     }

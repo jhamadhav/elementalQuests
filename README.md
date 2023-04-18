@@ -36,7 +36,7 @@ Listed below are all the feature included in the project
 - [x] User leader board
 - [x] Admin Panel
 - [x] User analytics after game ends
-- [x] Overall and each user's analyticals in admin panel
+- [x] Overall and each user's analytical in admin panel
 - [x] 404 page (route not present error)
 - [x] 403 page (insufficient authorization)
 - [x] Ability to review previous stage information if stuck on a certain stage
