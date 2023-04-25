@@ -230,9 +230,8 @@ const resetPassword = () => {
         .then(() => {
             console.log("password reset mail sent")
 
-            successMsg.log("password reset mail sent")
-        })
-        .catch((error) => {
+            successMsg("password reset mail sent")
+        }).catch((error) => {
             console.log("error while sending password reset mail")
             console.log(error);
 
